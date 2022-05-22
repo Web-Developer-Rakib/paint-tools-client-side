@@ -1,11 +1,15 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 
 const Navbar = () => {
+  const navigate = useNavigate();
   const navLinks = (
     <>
       <li>
-        <a>Blogs</a>
+        <NavLink to="/">Home</NavLink>
+      </li>
+      <li>
+        <NavLink to="/blogs">Blogs</NavLink>
       </li>
       <li>
         <NavLink to="/dashboard">Dashbord</NavLink>
@@ -46,15 +50,17 @@ const Navbar = () => {
             <ul className="flex flex-col lg:hidden">{btnSet}</ul>
           </ul>
         </div>
-        <a class="btn btn-ghost normal-case text-xl">PAINT TOOLS</a>
+        <Link to="/" class="btn btn-ghost normal-case text-xl">
+          PAINT TOOLS
+        </Link>
       </div>
       <div class="navbar-center hidden lg:flex">
         <ul class="menu menu-horizontal p-0">{navLinks}</ul>
       </div>
       <div class="navbar-end">
         <div className=" w-[200px] hidden lg:flex justify-around">{btnSet}</div>
-        <div class="dropdown">
-          <label tabindex="0" class="btn btn-ghost lg:hidden">
+        <div class="dropdown" onClick={() => navigate("/dashboard")}>
+          <label for="my-drawer-2" tabindex="0" class="btn btn-ghost lg:hidden">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               class="h-5 w-5"
