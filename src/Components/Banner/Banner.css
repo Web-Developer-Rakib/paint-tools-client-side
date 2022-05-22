@@ -1,0 +1,18 @@
+.banner {
+  display: flex;
+  justify-content: center;
+}
+.banner-txt-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: url("../../Images/paint-tools.webp");
+  background-repeat: no-repeat;
+  width: 1000px;
+  height: 500px;
+}
+.banner-txt {
+  background-color: rgba(153, 50, 204, 0.699);
+  width: 300px;
+  border-radius: 15px;
+}
