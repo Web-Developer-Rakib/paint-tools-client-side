@@ -12,6 +12,7 @@
   height: 170px;
   width: 170px;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  border-radius: 15px;
 }
 .bs-icon {
   font-size: 60px;
