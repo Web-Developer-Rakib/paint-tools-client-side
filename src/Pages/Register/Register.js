@@ -4,10 +4,12 @@ import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import auth from "../../firebase_init";
 import useFirebase from "../../Hooks/useFirebase";
+import usePutUsers from "../../Hooks/usePutUsers";
 import "./Register.css";
 
 const Register = () => {
   const { setUserInfo, handleGoogleProvider } = useFirebase();
+  const { putUsersToDb } = usePutUsers();
   const navigate = useNavigate();
   const date = new Date();
   const registerDate = date.toDateString();
@@ -29,20 +31,7 @@ const Register = () => {
           });
           const user = userCredential.user;
           setUserInfo(user);
-          fetch("http://localhost:5000/put-users", {
-            method: "PUT",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify(usersData),
-          })
-            .then((response) => response.json())
-            .then((data) => {
-              console.log("Success:", data);
-            })
-            .catch((error) => {
-              // console.error("Error:", error);
-            });
+          putUsersToDb(usersData);
           navigate("/thank-you");
         })
         .catch((error) => {

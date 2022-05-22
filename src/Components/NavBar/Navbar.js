@@ -1,10 +1,23 @@
+import { signOut } from "firebase/auth";
 import React from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import auth from "../../firebase_init";
 import useFirebase from "../../Hooks/useFirebase";
 
 const Navbar = () => {
   const navigate = useNavigate();
   const { userInfo } = useFirebase();
+  const handleSignOut = () => {
+    signOut(auth)
+      .then(() => {
+        navigate("/login");
+        toast.success("Signout successful.");
+      })
+      .catch((error) => {
+        toast.error(error);
+      });
+  };
   const navLinks = (
     <>
       <li>
@@ -28,7 +41,11 @@ const Navbar = () => {
       </Link>
     </>
   );
-  const signOutBtn = <button class="btn mb-3 lg:mb-0">Sign Out</button>;
+  const signOutBtn = (
+    <button class="btn mb-3 lg:mb-0" onClick={handleSignOut}>
+      Sign Out
+    </button>
+  );
   return (
     <div class="navbar bg-base-100">
       <div class="navbar-start">
