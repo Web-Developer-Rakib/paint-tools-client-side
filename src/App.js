@@ -8,6 +8,7 @@ import Dashbord from "./Pages/Dashboard/Dashbord";
 import Home from "./Pages/Home/Home";
 import Login from "./Pages/Login/Login";
 import Register from "./Pages/Register/Register";
+import ThankYou from "./Pages/ThankYou/ThankYou";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
         <Route path="blogs" element={<Blogs></Blogs>}></Route>
         <Route path="login" element={<Login></Login>}></Route>
         <Route path="register" element={<Register></Register>}></Route>
+        <Route path="thank-you" element={<ThankYou></ThankYou>}></Route>
       </Routes>
       <ToastContainer />
     </div>

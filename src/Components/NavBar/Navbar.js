@@ -1,8 +1,10 @@
 import React from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
+import useFirebase from "../../Hooks/useFirebase";
 
 const Navbar = () => {
   const navigate = useNavigate();
+  const { userInfo } = useFirebase();
   const navLinks = (
     <>
       <li>
@@ -26,6 +28,7 @@ const Navbar = () => {
       </Link>
     </>
   );
+  const signOutBtn = <button class="btn mb-3 lg:mb-0">Sign Out</button>;
   return (
     <div class="navbar bg-base-100">
       <div class="navbar-start">
@@ -51,7 +54,9 @@ const Navbar = () => {
             class="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
           >
             {navLinks}
-            <ul className="flex flex-col lg:hidden">{btnSet}</ul>
+            <ul className="flex flex-col lg:hidden">
+              {userInfo ? signOutBtn : btnSet}
+            </ul>
           </ul>
         </div>
         <Link to="/" class="btn btn-ghost normal-case text-xl">
@@ -62,7 +67,9 @@ const Navbar = () => {
         <ul class="menu menu-horizontal p-0">{navLinks}</ul>
       </div>
       <div class="navbar-end">
-        <div className=" w-[200px] hidden lg:flex justify-around">{btnSet}</div>
+        <div className=" w-[200px] hidden lg:flex justify-around">
+          {userInfo ? signOutBtn : btnSet}
+        </div>
         <div class="dropdown" onClick={() => navigate("/dashboard")}>
           <label for="my-drawer-2" tabindex="0" class="btn btn-ghost lg:hidden">
             <svg

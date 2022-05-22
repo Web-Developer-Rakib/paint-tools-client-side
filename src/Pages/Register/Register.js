@@ -1,13 +1,77 @@
+import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import auth from "../../firebase_init";
+import useFirebase from "../../Hooks/useFirebase";
 import "./Register.css";
 
 const Register = () => {
+  const { setUserInfo, handleGoogleProvider } = useFirebase();
+  const navigate = useNavigate();
+  const date = new Date();
+  const registerDate = date.toDateString();
+  const admin = false;
+  const handleRegister = (e) => {
+    e.preventDefault();
+    const name = e.target.name.value;
+    const email = e.target.email.value;
+    const password = e.target.password.value;
+    const confirmPassword = e.target.confirmPassword.value;
+    const usersData = { name, email, registerDate, admin };
+    if (password !== confirmPassword) {
+      toast.warn("Password did not matched.");
+    } else {
+      createUserWithEmailAndPassword(auth, email, password)
+        .then(async (userCredential) => {
+          await updateProfile(auth.currentUser, {
+            displayName: name,
+          });
+          const user = userCredential.user;
+          setUserInfo(user);
+          fetch("http://localhost:5000/put-users", {
+            method: "PUT",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(usersData),
+          })
+            .then((response) => response.json())
+            .then((data) => {
+              console.log("Success:", data);
+            })
+            .catch((error) => {
+              // console.error("Error:", error);
+            });
+          navigate("/thank-you");
+        })
+        .catch((error) => {
+          const errorMessage = error.message;
+          if (errorMessage === "Firebase: Error (auth/email-already-in-use).") {
+            toast.warn("This email is already in use.");
+          }
+          if (errorMessage === "Firebase: Error (auth/invalid-email).") {
+            toast.warn("Please enter a valid email.");
+          }
+          if (
+            errorMessage === "Firebase: Error (auth/network-request-failed)."
+          ) {
+            toast.error("Please check your internet connection.");
+          }
+          if (
+            errorMessage ===
+            "Firebase: Password should be at least 6 characters (auth/weak-password)."
+          ) {
+            toast.warn("Password should be at least 6 characters.");
+          }
+        });
+    }
+  };
   return (
     <div className="flex justify-center">
       <div className="register-form-container">
         <div>
-          <form onSubmit="" className="register-form">
+          <form onSubmit={handleRegister} className="register-form">
             <h3 className="my-3 text-3xl">Register</h3>
             <input
               type="text"
@@ -39,7 +103,12 @@ const Register = () => {
             </div>
           </form>
           <div className="flex justify-center">
-            <button className="btn bg-blue-500 my-3">Login with Google</button>
+            <button
+              onClick={handleGoogleProvider}
+              className="btn bg-blue-500 my-3"
+            >
+              Register with Google
+            </button>
           </div>
           <p>
             Already have an account?{" "}
