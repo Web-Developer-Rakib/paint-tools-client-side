@@ -18,8 +18,12 @@ const Navbar = () => {
   );
   const btnSet = (
     <>
-      <a class="btn mb-3 lg:mb-0">Login</a>
-      <a class="btn">Register</a>
+      <Link to="/login" class="btn mb-3 lg:mb-0">
+        Login
+      </Link>
+      <Link to="/register" class="btn">
+        Register
+      </Link>
     </>
   );
   return (
