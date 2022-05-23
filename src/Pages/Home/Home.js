@@ -5,10 +5,10 @@ import BusinessSummary from "../../Components/BusinessSummary/BusinessSummary";
 import Footer from "../../Components/Footer/Footer";
 import ProductsCard from "../../Components/ProductsCard/ProductsCard";
 import ReviewCard from "../../Components/ReviewCard/ReviewCard";
-import useGetProducts from "../../Hooks/useGetProducts";
+import useGetAllProducts from "../../Hooks/useGetAllProducts";
 
 const Home = () => {
-  const { products } = useGetProducts();
+  const { products } = useGetAllProducts();
   const productSlice = products.slice(0, 3);
   const navigate = useNavigate();
   return (

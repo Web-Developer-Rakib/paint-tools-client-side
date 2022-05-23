@@ -1,9 +1,9 @@
 import React from "react";
 import ProductsCard from "../../Components/ProductsCard/ProductsCard";
-import useGetProducts from "../../Hooks/useGetProducts";
+import useGetAllProducts from "../../Hooks/useGetAllProducts";
 
 const AllProducts = () => {
-  const { products } = useGetProducts();
+  const { products } = useGetAllProducts();
   return (
     <div>
       <h2 className=" text-3xl my-5 ml-8">All products</h2>

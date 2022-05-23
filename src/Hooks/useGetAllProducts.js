@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-const useGetProducts = () => {
+const useGetAllProducts = () => {
   const [products, setProducts] = useState([]);
   useEffect(() => {
     fetch("http://localhost:5000/products")
@@ -10,4 +10,4 @@ const useGetProducts = () => {
   return { products };
 };
 
-export default useGetProducts;
+export default useGetAllProducts;
