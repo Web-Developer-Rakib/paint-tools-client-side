@@ -23,7 +23,8 @@ const useFirebase = () => {
       .then((result) => {
         const user = result.user;
         const email = user.email;
-        const usersData = { email, admin };
+        const name = user.displayName;
+        const usersData = { email, admin, name };
         setUserInfo(user);
         putUsersToDb(usersData);
         navigate(from, { replace: true });
