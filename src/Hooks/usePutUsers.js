@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 const usePutUsers = () => {
-  const [data, setData] = useState();
+  const [data, setData] = useState({});
   const [error, setError] = useState();
   const putUsersToDb = (usersData) => {
     fetch("http://localhost:5000/put-user", {

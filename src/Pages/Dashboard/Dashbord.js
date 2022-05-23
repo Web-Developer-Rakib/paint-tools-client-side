@@ -1,13 +1,10 @@
 import React from "react";
 import { NavLink, Outlet } from "react-router-dom";
-import useFirebase from "../../Hooks/useFirebase";
-import useGetUsers from "../../Hooks/useGetUsers";
+import useAdmin from "../../Hooks/useAdmin";
 
 const Dashbord = () => {
-  const { userInfo } = useFirebase();
-  const { users } = useGetUsers();
-  // const currentUser = users.filter((user) => user.email === userInfo.email);
-  console.log(users);
+  const { admin } = useAdmin();
+
   return (
     <div class="drawer drawer-mobile">
       <input id="my-drawer-2" type="checkbox" class="drawer-toggle" />
@@ -15,29 +12,39 @@ const Dashbord = () => {
       <div class="drawer-side">
         <label for="my-drawer-2" class="drawer-overlay"></label>
         <ul class="menu p-4 overflow-y-auto w-80 bg-base-100 text-base-content">
-          <li>
-            <NavLink to="/dashboard/my-orders">My Orders</NavLink>
-          </li>
-          <li>
-            <NavLink to="/dashboard/add-a-review">Add A Review</NavLink>
-          </li>
+          {!admin && (
+            <>
+              <li>
+                <NavLink to="/dashboard/my-orders">My Orders</NavLink>
+              </li>
+              <li>
+                <NavLink to="/dashboard/add-a-review">Add A Review</NavLink>
+              </li>
+            </>
+          )}
           <li>
             <NavLink to="/dashboard/my-profile">My profile</NavLink>
           </li>
-          <li>
-            <NavLink to="/dashboard/manage-all-orders">
-              Manage All Orders
-            </NavLink>
-          </li>
-          <li>
-            <NavLink to="/dashboard/add-a-product">Add A Product</NavLink>
-          </li>
-          <li>
-            <NavLink to="/dashboard/make-admin">Make Admin</NavLink>
-          </li>
-          <li>
-            <NavLink to="/dashboard/manage-products">Manage Products</NavLink>
-          </li>
+          {admin && (
+            <>
+              <li>
+                <NavLink to="/dashboard/manage-all-orders">
+                  Manage All Orders
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to="/dashboard/add-a-product">Add A Product</NavLink>
+              </li>
+              <li>
+                <NavLink to="/dashboard/make-admin">Make Admin</NavLink>
+              </li>
+              <li>
+                <NavLink to="/dashboard/manage-products">
+                  Manage Products
+                </NavLink>
+              </li>
+            </>
+          )}
         </ul>
       </div>
     </div>
