@@ -22,21 +22,25 @@ const AddAProduct = () => {
       minimumOrder,
       description,
     };
-    fetch("http://localhost:5000/add-product", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(productsInfo),
-    })
-      .then((response) => response.json())
-      .then(() => {
-        toast.success("Product added successfully.");
-        e.target.reset();
+    if (price < 1 || avaiableStock < 1 || minimumOrder < 1) {
+      toast.warn("All fields need positive amount.");
+    } else {
+      fetch("http://localhost:5000/add-product", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(productsInfo),
       })
-      .catch(() => {
-        toast.error("Something went wrong.");
-      });
+        .then((response) => response.json())
+        .then(() => {
+          toast.success("Product added successfully.");
+          e.target.reset();
+        })
+        .catch(() => {
+          toast.error("Something went wrong.");
+        });
+    }
   };
   return (
     <div>
