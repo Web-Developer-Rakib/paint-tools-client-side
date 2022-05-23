@@ -1,7 +1,9 @@
 import React from "react";
 import "./ProductCard.css";
 
-const ProductsCard = () => {
+const ProductsCard = ({ product }) => {
+  const { productName, price, avaiableStock, minimumOrder, description, _id } =
+    product;
   return (
     <div class="card w-80 bg-base-100 shadow-xl mb-5">
       <figure>
