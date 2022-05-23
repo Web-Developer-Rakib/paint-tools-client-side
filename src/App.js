@@ -68,7 +68,14 @@ function App() {
           element={<AllProducts></AllProducts>}
         ></Route>
         <Route path="all-reviews" element={<AllReviews></AllReviews>}></Route>
-        <Route path="order/:id" element={<Order></Order>}></Route>
+        <Route
+          path="order/:id"
+          element={
+            <RequireAuth>
+              <Order></Order>
+            </RequireAuth>
+          }
+        ></Route>
         <Route path="thank-you" element={<ThankYou></ThankYou>}></Route>
       </Routes>
       <ToastContainer />

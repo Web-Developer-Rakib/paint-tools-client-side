@@ -1,12 +1,54 @@
 import React from "react";
+import { toast } from "react-toastify";
 import useFirebase from "../../Hooks/useFirebase";
 import useGetSingleProduct from "../../Hooks/useGetSingleProduct";
 
 const Order = () => {
   const { product } = useGetSingleProduct();
   const { userInfo } = useFirebase();
+
   const handlePlaceOrder = (e) => {
     e.preventDefault();
+    const quantity = e.target.quantity.value;
+    if (quantity < 1) {
+      toast.warn("Please enter one or more.");
+    } else if (quantity > product?.avaiableStock) {
+      toast.warn("You can not order more than available stock.");
+    } else if (quantity < product?.minimumOrder) {
+      toast.warn(`You have to order minimum ${product?.minimumOrder} unites`);
+    } else {
+      const productName = product?.productName;
+      const customerName = userInfo?.displayName;
+      const unitPrice = product?.price;
+      const paid = false;
+      const shift = false;
+      const totalPrice = parseFloat(quantity) * parseFloat(unitPrice);
+      const orderInfo = {
+        productName,
+        customerName,
+        quantity,
+        unitPrice,
+        totalPrice,
+        shift,
+        paid,
+      };
+      console.log(orderInfo);
+      fetch("http://localhost:5000/post-order", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(orderInfo),
+      })
+        .then((response) => response.json())
+        .then(() => {
+          toast.success("Porduct added to your order list.");
+          e.target.reset();
+        })
+        .catch(() => {
+          toast.error("Something went wrong.");
+        });
+    }
   };
   return (
     <div class="hero min-h-screen bg-base-200">
@@ -30,7 +72,7 @@ const Order = () => {
               type="number"
               placeholder="Enter quantity"
               class="input input-bordered input-sm"
-              name="avaiableStock"
+              name="quantity"
               required
             />
           </label>
