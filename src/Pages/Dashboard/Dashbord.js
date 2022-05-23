@@ -1,7 +1,13 @@
 import React from "react";
 import { NavLink, Outlet } from "react-router-dom";
+import useFirebase from "../../Hooks/useFirebase";
+import useGetUsers from "../../Hooks/useGetUsers";
 
 const Dashbord = () => {
+  const { userInfo } = useFirebase();
+  const { users } = useGetUsers();
+  // const currentUser = users.filter((user) => user.email === userInfo.email);
+  console.log(users);
   return (
     <div class="drawer drawer-mobile">
       <input id="my-drawer-2" type="checkbox" class="drawer-toggle" />

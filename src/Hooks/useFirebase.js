@@ -11,7 +11,6 @@ import usePutUsers from "./usePutUsers";
 
 const useFirebase = () => {
   const [userInfo, setUserInfo] = useState({});
-  console.log(userInfo);
   const { putUsersToDb } = usePutUsers();
   const location = useLocation();
   const navigate = useNavigate();
