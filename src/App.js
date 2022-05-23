@@ -3,6 +3,7 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "./App.css";
 import Navbar from "./Components/NavBar/Navbar";
+import RequireAuth from "./Hooks/RequireAuth";
 import Blogs from "./Pages/Blogs/Blogs";
 import Dashbord from "./Pages/Dashboard/Dashbord";
 import Home from "./Pages/Home/Home";
@@ -23,7 +24,14 @@ function App() {
       <Navbar></Navbar>
       <Routes>
         <Route path="/" element={<Home></Home>}></Route>
-        <Route path="dashboard" element={<Dashbord></Dashbord>}>
+        <Route
+          path="dashboard"
+          element={
+            <RequireAuth>
+              <Dashbord></Dashbord>
+            </RequireAuth>
+          }
+        >
           <Route index element={<MyProfile></MyProfile>}></Route>
           <Route path="my-orders" element={<MyOrders></MyOrders>}></Route>
           <Route
