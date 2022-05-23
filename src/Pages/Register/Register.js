@@ -1,4 +1,8 @@
-import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
+import {
+  createUserWithEmailAndPassword,
+  sendEmailVerification,
+  updateProfile,
+} from "firebase/auth";
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
@@ -29,6 +33,7 @@ const Register = () => {
           });
           const user = userCredential.user;
           setUserInfo(user);
+          sendEmailVerification(auth.currentUser);
           putUsersToDb(usersData);
           navigate("/thank-you");
         })

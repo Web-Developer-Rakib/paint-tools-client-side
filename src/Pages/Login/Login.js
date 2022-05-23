@@ -1,5 +1,8 @@
-import { signInWithEmailAndPassword } from "firebase/auth";
-import React from "react";
+import {
+  sendPasswordResetEmail,
+  signInWithEmailAndPassword,
+} from "firebase/auth";
+import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import auth from "../../firebase_init";
@@ -8,10 +11,11 @@ import "./Login.css";
 
 const Login = () => {
   const { setUserInfo, handleGoogleProvider } = useFirebase();
+  const [email, setEmail] = useState("");
   const navigate = useNavigate();
   const handleLogin = (e) => {
     e.preventDefault();
-    const email = e.target.email.value;
+    setEmail(e.target.email.value);
     const password = e.target.password.value;
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
@@ -35,6 +39,28 @@ const Login = () => {
         }
         if (errorMessage === "Firebase: Error (auth/invalid-email).") {
           toast.warn("Please enter a valid email.");
+        }
+      });
+  };
+  //Password reset function
+  const handlePasswordReset = () => {
+    sendPasswordResetEmail(auth, email)
+      .then(() => {
+        toast.success("Password reset email sent.");
+      })
+      .catch((error) => {
+        const errorMessage = error.message;
+        if (errorMessage === "Firebase: Error (auth/missing-email).") {
+          toast.warn("Please enter your email.");
+        }
+        if (errorMessage === "Firebase: Error (auth/user-not-found).") {
+          toast.warn("This email is not registered yet.");
+        }
+        if (errorMessage === "Firebase: Error (auth/invalid-email).") {
+          toast.warn("Please enter a valid email.");
+        }
+        if (errorMessage === "Firebase: Error (auth/network-request-failed).") {
+          toast.error("Please check your internet connection.");
         }
       });
   };
@@ -81,7 +107,10 @@ const Login = () => {
               </Link>
             </p>
             <p>
-              Forgot password? <span className="form-links">Reset now</span>
+              Forgot password?{" "}
+              <span onClick={handlePasswordReset} className="form-links">
+                Reset now
+              </span>
             </p>
           </div>
         </div>
