@@ -9,9 +9,26 @@ const Home = () => {
   return (
     <div>
       <Banner></Banner>
-      <ProductsCard></ProductsCard>
-      <ReviewCard></ReviewCard>
-      <BusinessSummary></BusinessSummary>
+      <section className="ml-5 mr-5">
+        <h3 className="text-2xl text-center my-5">Products</h3>
+        <div className="flex justify-evenly flex-wrap">
+          <ProductsCard></ProductsCard>
+          <ProductsCard></ProductsCard>
+          <ProductsCard></ProductsCard>
+        </div>
+      </section>
+      <section className="ml-5 mr-5">
+        <h3 className="text-2xl text-center my-5">Reviews</h3>
+        <div className="flex justify-evenly flex-wrap">
+          <ReviewCard></ReviewCard>
+          <ReviewCard></ReviewCard>
+          <ReviewCard></ReviewCard>
+        </div>
+      </section>
+      <section className="mb-5">
+        <h3 className="text-2xl text-center my-5">Business summary</h3>
+        <BusinessSummary></BusinessSummary>
+      </section>
       <Footer></Footer>
     </div>
   );

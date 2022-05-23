@@ -1,11 +1,11 @@
-.review-text {
+.description {
   height: 150px;
   overflow-y: scroll;
 }
-.review-text::-webkit-scrollbar {
+.description::-webkit-scrollbar {
   display: none;
 }
-.review-text {
+.description {
   -ms-overflow-style: none;
   scrollbar-width: none;
 }

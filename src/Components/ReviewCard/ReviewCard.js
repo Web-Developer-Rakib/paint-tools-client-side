@@ -6,7 +6,7 @@ import "./ReviewCard.css";
 
 const ReviewCard = () => {
   return (
-    <div class="card card-compact w-60 bg-base-100 shadow-xl">
+    <div class="card card-compact w-60 bg-base-100 shadow-xl mb-5">
       <div class="card-body">
         <h2 class="card-title">Maria Grahamble</h2>
         <h4>

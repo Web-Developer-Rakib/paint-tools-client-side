@@ -1,8 +1,9 @@
 import React from "react";
+import "./ProductCard.css";
 
 const ProductsCard = () => {
   return (
-    <div class="card w-80 bg-base-100 shadow-xl">
+    <div class="card w-80 bg-base-100 shadow-xl mb-5">
       <figure>
         <img
           src="https://api.lorem.space/image/shoes?w=400&h=225"
@@ -25,12 +26,12 @@ const ProductsCard = () => {
         </p>
         <p>
           <b>Short description: </b>
-          <span>
+          <div className="description">
             Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem
             voluptas consectetur tempore fuga, quidem rem quae nulla deserunt.
             Sit eaque maiores necessitatibus sed possimus dolores animi
             voluptates amet? Velit, voluptatum.
-          </span>
+          </div>
         </p>
         <div class="card-actions justify-end">
           <button class="btn btn-primary">Order Now</button>

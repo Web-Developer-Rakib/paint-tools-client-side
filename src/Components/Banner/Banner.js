@@ -6,7 +6,7 @@ const Banner = () => {
     <div>
       <div className="banner">
         <div className="banner-txt-section">
-          <h3 className="banner-txt">Let's paint around you.</h3>
+          <h3 className="banner-txt text-5xl">Let's paint around you.</h3>
         </div>
       </div>
     </div>

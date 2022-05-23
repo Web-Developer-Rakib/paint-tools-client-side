@@ -13,6 +13,8 @@
 }
 .banner-txt {
   background-color: rgba(153, 50, 204, 0.699);
-  width: 300px;
+  width: auto;
   border-radius: 15px;
+  text-transform: uppercase;
+  padding: 20px;
 }
