@@ -89,6 +89,7 @@ const Register = () => {
               </button>
             </div>
           </form>
+          <div class="divider">OR</div>
           <div className="flex justify-center">
             <button
               onClick={handleGoogleProvider}

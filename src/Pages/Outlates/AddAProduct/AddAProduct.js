@@ -1,17 +1,56 @@
 import React from "react";
+import { toast } from "react-toastify";
+import useFirebase from "../../../Hooks/useFirebase";
 
 const AddAProduct = () => {
+  const { userInfo } = useFirebase();
+  const userName = userInfo?.displayName;
+  const userEmail = userInfo?.email;
+  const addAProduct = (e) => {
+    e.preventDefault();
+    const productName = e.target.productName.value;
+    const price = e.target.price.value;
+    const avaiableStock = e.target.avaiableStock.value;
+    const minimumOrder = e.target.minimumOrder.value;
+    const description = e.target.description.value;
+    const productsInfo = {
+      productName,
+      userName,
+      userEmail,
+      price,
+      avaiableStock,
+      minimumOrder,
+      description,
+    };
+    fetch("http://localhost:5000/add-product", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(productsInfo),
+    })
+      .then((response) => response.json())
+      .then(() => {
+        toast.success("Product added successfully.");
+        e.target.reset();
+      })
+      .catch(() => {
+        toast.error("Something went wrong.");
+      });
+  };
   return (
     <div>
       <h2 className="text-3xl my-5 ml-8">Add a product</h2>
       <div className="flex justify-center">
-        <form class="form-control">
+        <form onSubmit={addAProduct} class="form-control">
           <label class="input-group input-group-sm my-2">
             <span>Product name</span>
             <input
               type="text"
               placeholder="Enter the product name"
               class="input input-bordered input-sm"
+              name="productName"
+              required
             />
           </label>
           <label class="input-group input-group-sm my-2">
@@ -20,6 +59,8 @@ const AddAProduct = () => {
               type="number"
               placeholder="Price/unit"
               class="input input-bordered input-sm"
+              name="price"
+              required
             />
           </label>
           <label class="input-group input-group-sm my-2">
@@ -28,6 +69,8 @@ const AddAProduct = () => {
               type="number"
               placeholder="Available stock"
               class="input input-bordered input-sm"
+              name="avaiableStock"
+              required
             />
           </label>
           <label class="input-group input-group-sm my-2">
@@ -36,6 +79,8 @@ const AddAProduct = () => {
               type="number"
               placeholder="Minimum order"
               class="input input-bordered input-sm"
+              name="minimumOrder"
+              required
             />
           </label>
           <label class="input-group input-group-sm my-2">
@@ -43,6 +88,8 @@ const AddAProduct = () => {
             <textarea
               class="textarea textarea-bordered"
               placeholder="Type product description here."
+              name="description"
+              required
             ></textarea>
           </label>
           <label class="input-group input-group-sm my-2">

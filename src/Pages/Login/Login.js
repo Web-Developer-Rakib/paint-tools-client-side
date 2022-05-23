@@ -45,11 +45,18 @@ const Login = () => {
           <div>
             <form onSubmit={handleLogin} className="login-form">
               <h3 className="my-3 text-3xl">Login</h3>
-              <input type="email" name="email" placeholder="Email" /> <br />
+              <input
+                type="email"
+                name="email"
+                placeholder="Email"
+                required
+              />{" "}
+              <br />
               <input
                 type="password"
                 name="password"
                 placeholder="Password"
+                required
               />{" "}
               <br />
               <div className="flex justify-center">
@@ -58,6 +65,7 @@ const Login = () => {
                 </button>
               </div>
             </form>
+            <div class="divider">OR</div>
             <div className="flex justify-center">
               <button
                 onClick={handleGoogleProvider}
