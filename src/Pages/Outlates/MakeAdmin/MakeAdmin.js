@@ -1,4 +1,5 @@
 import React from "react";
+import { toast } from "react-toastify";
 import useGetUsers from "../../../Hooks/useGetUsers";
 
 const MakeAdmin = () => {
@@ -16,11 +17,11 @@ const MakeAdmin = () => {
       body: JSON.stringify(data),
     })
       .then((response) => response.json())
-      .then((data) => {
-        // setData(data);
+      .then(() => {
+        toast.success("Admin created successfuly.");
       })
-      .catch((error) => {
-        // setError(error);
+      .catch(() => {
+        toast.error("Something went wrong.");
       });
   };
   return (
@@ -38,7 +39,7 @@ const MakeAdmin = () => {
           </thead>
           <tbody>
             {users.map((user) => (
-              <tr>
+              <tr key={user._id}>
                 <td>{user?.name}</td>
                 <td>{user?.email}</td>
                 <td>{user?.admin ? "Admin" : "Customer"}</td>

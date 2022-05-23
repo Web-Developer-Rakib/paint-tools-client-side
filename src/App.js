@@ -10,6 +10,7 @@ import Blogs from "./Pages/Blogs/Blogs";
 import Dashbord from "./Pages/Dashboard/Dashbord";
 import Home from "./Pages/Home/Home";
 import Login from "./Pages/Login/Login";
+import Order from "./Pages/Order/Order";
 import AddAProduct from "./Pages/Outlates/AddAProduct/AddAProduct";
 import AddAReview from "./Pages/Outlates/AddAReview/AddAReview";
 import MakeAdmin from "./Pages/Outlates/MakeAdmin/MakeAdmin";
@@ -67,6 +68,7 @@ function App() {
           element={<AllProducts></AllProducts>}
         ></Route>
         <Route path="all-reviews" element={<AllReviews></AllReviews>}></Route>
+        <Route path="order/:id" element={<Order></Order>}></Route>
         <Route path="thank-you" element={<ThankYou></ThankYou>}></Route>
       </Routes>
       <ToastContainer />
