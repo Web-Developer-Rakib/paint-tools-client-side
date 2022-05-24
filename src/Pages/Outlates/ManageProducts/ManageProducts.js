@@ -1,8 +1,23 @@
 import React from "react";
+import { toast } from "react-toastify";
 import useGetAllProducts from "../../../Hooks/useGetAllProducts";
 
 const ManageProducts = () => {
-  const { products } = useGetAllProducts();
+  const { products, setProducts } = useGetAllProducts();
+  const handleDelete = (id) => {
+    fetch(`http://localhost:5000/delete-product/${id}`, {
+      method: "DELETE",
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.deletedCount === 1) {
+          toast.success("Product deleted successfuly.");
+          setProducts(products.filter((product) => product?._id !== id));
+        } else {
+          toast.error("Something went wrong.");
+        }
+      });
+  };
   return (
     <div>
       <h2 className=" text-3xl my-5 ml-8">Manage products</h2>
@@ -20,10 +35,15 @@ const ManageProducts = () => {
             {products.map((product) => (
               <tr>
                 <th>{product?.productName}</th>
-                <td>{product?.availableStock} units</td>
-                <td>{product?.price} units</td>
+                <td>{product?.avaiableStock} units</td>
+                <td>{product?.price}$/unit</td>
                 <td>
-                  <button className="btn btn-error">Delete</button>
+                  <button
+                    onClick={() => handleDelete(product?._id)}
+                    className="btn btn-error"
+                  >
+                    Delete
+                  </button>
                 </td>
               </tr>
             ))}
