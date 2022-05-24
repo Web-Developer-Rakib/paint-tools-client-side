@@ -18,14 +18,13 @@ const useFirebase = () => {
   const from = location.state?.from?.pathname || "/";
   //Google signup
   const googleProvider = new GoogleAuthProvider();
-  const handleGoogleProvider = async () => {
-    const email = await userInfo?.email;
-    console.log(email);
-    const admin = false;
-    const usersData = { email, admin };
+  const admin = false;
+  const handleGoogleProvider = () => {
     signInWithPopup(auth, googleProvider)
       .then((result) => {
         const user = result.user;
+        const email = user.email;
+        const usersData = { email, admin };
         setUserInfo(user);
         putUsersToDb(usersData);
         navigate(from, { replace: true });
