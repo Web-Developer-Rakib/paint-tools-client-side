@@ -2,7 +2,7 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import useFirebase from "../../../Hooks/useFirebase";
 import useGetUsers from "../../../Hooks/useGetUsers";
-import avatar from "../../../Images/avatar.png";
+import defaultAvatar from "../../../Images/avatar.png";
 
 const MyProfile = () => {
   const { userInfo } = useFirebase();
@@ -20,7 +20,10 @@ const MyProfile = () => {
               <div class="card w-96 bg-base-100 shadow-xl">
                 <div class="avatar flex justify-center">
                   <div class="w-24 rounded-full">
-                    <img src={photoURL === null ? avatar : photoURL} alt="" />
+                    <img
+                      src={photoURL === null ? defaultAvatar : photoURL}
+                      alt=""
+                    />
                   </div>
                 </div>
                 <div class="card-body">

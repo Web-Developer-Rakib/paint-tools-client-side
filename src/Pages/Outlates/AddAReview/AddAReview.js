@@ -71,6 +71,7 @@ const AddAReview = () => {
                 class="mask mask-star-2 bg-orange-400"
                 onClick={() => setCount(5)}
               />
+              <span className="ml-1 font-bold">{count}/5</span>
             </div>
           </label>
           <label class="input-group input-group-sm my-2">
