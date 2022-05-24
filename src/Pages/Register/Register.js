@@ -11,8 +11,6 @@ const Register = () => {
   const { setUserInfo, handleGoogleProvider } = useFirebase();
   const { putUsersToDb } = usePutUsers();
   const navigate = useNavigate();
-  const date = new Date();
-  const registerDate = date.toDateString();
   const admin = false;
   const handleRegister = (e) => {
     e.preventDefault();
@@ -20,7 +18,7 @@ const Register = () => {
     const email = e.target.email.value;
     const password = e.target.password.value;
     const confirmPassword = e.target.confirmPassword.value;
-    const usersData = { name, email, registerDate, admin };
+    const usersData = { email, admin };
     if (password !== confirmPassword) {
       toast.warn("Password did not matched.");
     } else {

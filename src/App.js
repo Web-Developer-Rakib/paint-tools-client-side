@@ -7,6 +7,13 @@ import Blogs from "./Pages/Blogs/Blogs";
 import Dashbord from "./Pages/Dashboard/Dashbord";
 import Home from "./Pages/Home/Home";
 import Login from "./Pages/Login/Login";
+import AddAProduct from "./Pages/Outlates/AddAProduct/AddAProduct";
+import AddAReview from "./Pages/Outlates/AddAReview/AddAReview";
+import MakeAdmin from "./Pages/Outlates/MakeAdmin/MakeAdmin";
+import ManageAllOrders from "./Pages/Outlates/ManageAllOrders/ManageAllOrders";
+import ManageProducts from "./Pages/Outlates/ManageProducts/ManageProducts";
+import MyOrders from "./Pages/Outlates/MyOrders/MyOrders";
+import MyProfile from "./Pages/Outlates/MyProfile/MyProfile";
 import Register from "./Pages/Register/Register";
 import ThankYou from "./Pages/ThankYou/ThankYou";
 
@@ -16,7 +23,28 @@ function App() {
       <Navbar></Navbar>
       <Routes>
         <Route path="/" element={<Home></Home>}></Route>
-        <Route path="dashboard" element={<Dashbord></Dashbord>}></Route>
+        <Route path="dashboard" element={<Dashbord></Dashbord>}>
+          <Route index element={<MyProfile></MyProfile>}></Route>
+          <Route path="my-orders" element={<MyOrders></MyOrders>}></Route>
+          <Route
+            path="add-a-review"
+            element={<AddAReview></AddAReview>}
+          ></Route>
+          <Route path="my-profile" element={<MyProfile></MyProfile>}></Route>
+          <Route
+            path="manage-all-orders"
+            element={<ManageAllOrders></ManageAllOrders>}
+          ></Route>
+          <Route
+            path="add-a-product"
+            element={<AddAProduct></AddAProduct>}
+          ></Route>
+          <Route path="make-admin" element={<MakeAdmin></MakeAdmin>}></Route>
+          <Route
+            path="manage-products"
+            element={<ManageProducts></ManageProducts>}
+          ></Route>
+        </Route>
         <Route path="blogs" element={<Blogs></Blogs>}></Route>
         <Route path="login" element={<Login></Login>}></Route>
         <Route path="register" element={<Register></Register>}></Route>

@@ -7,19 +7,27 @@ import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import auth from "../firebase_init";
+import usePutUsers from "./usePutUsers";
 
 const useFirebase = () => {
   const [userInfo, setUserInfo] = useState({});
+  console.log(userInfo);
+  const { putUsersToDb } = usePutUsers();
   const location = useLocation();
   const navigate = useNavigate();
   const from = location.state?.from?.pathname || "/";
   //Google signup
   const googleProvider = new GoogleAuthProvider();
-  const handleGoogleProvider = () => {
+  const handleGoogleProvider = async () => {
+    const email = await userInfo?.email;
+    console.log(email);
+    const admin = false;
+    const usersData = { email, admin };
     signInWithPopup(auth, googleProvider)
       .then((result) => {
         const user = result.user;
         setUserInfo(user);
+        putUsersToDb(usersData);
         navigate(from, { replace: true });
       })
       .catch((error) => {
