@@ -1,6 +1,8 @@
 import React from "react";
+import useGetAllProducts from "../../../Hooks/useGetAllProducts";
 
 const ManageProducts = () => {
+  const { products } = useGetAllProducts();
   return (
     <div>
       <h2 className=" text-3xl my-5 ml-8">Manage products</h2>
@@ -15,24 +17,16 @@ const ManageProducts = () => {
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <th>Brush</th>
-              <td>20$</td>
-              <td>200 units</td>
-              <td>Paid</td>
-            </tr>
-            <tr>
-              <th>Brush</th>
-              <td>20$</td>
-              <td>200 units</td>
-              <td>Paid</td>
-            </tr>
-            <tr>
-              <th>Brush</th>
-              <td>20$</td>
-              <td>200 units</td>
-              <td>Paid</td>
-            </tr>
+            {products.map((product) => (
+              <tr>
+                <th>{product?.productName}</th>
+                <td>{product?.availableStock} units</td>
+                <td>{product?.price} units</td>
+                <td>
+                  <button className="btn btn-error">Delete</button>
+                </td>
+              </tr>
+            ))}
           </tbody>
         </table>
       </div>

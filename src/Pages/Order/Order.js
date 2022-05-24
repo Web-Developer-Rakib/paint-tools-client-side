@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import useFirebase from "../../Hooks/useFirebase";
 import useGetSingleProduct from "../../Hooks/useGetSingleProduct";
@@ -6,7 +7,7 @@ import useGetSingleProduct from "../../Hooks/useGetSingleProduct";
 const Order = () => {
   const { product } = useGetSingleProduct();
   const { userInfo } = useFirebase();
-
+  const navigate = useNavigate();
   const handlePlaceOrder = (e) => {
     e.preventDefault();
     const quantity = e.target.quantity.value;
@@ -19,6 +20,7 @@ const Order = () => {
     } else {
       const productName = product?.productName;
       const customerName = userInfo?.displayName;
+      const customerEmail = userInfo?.email;
       const unitPrice = product?.price;
       const paid = false;
       const shift = false;
@@ -26,13 +28,13 @@ const Order = () => {
       const orderInfo = {
         productName,
         customerName,
+        customerEmail,
         quantity,
         unitPrice,
         totalPrice,
         shift,
         paid,
       };
-      console.log(orderInfo);
       fetch("http://localhost:5000/post-order", {
         method: "POST",
         headers: {
@@ -43,6 +45,7 @@ const Order = () => {
         .then((response) => response.json())
         .then(() => {
           toast.success("Porduct added to your order list.");
+          navigate("/dashboard/my-orders");
           e.target.reset();
         })
         .catch(() => {
@@ -76,7 +79,7 @@ const Order = () => {
               required
             />
           </label>
-          <button class="btn btn-primary">Place order</button>
+          <button class="btn btn-primary">Add to wishlist</button>
         </form>
       </div>
     </div>

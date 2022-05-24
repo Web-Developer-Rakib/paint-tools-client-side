@@ -2,6 +2,7 @@ import { Route, Routes } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "./App.css";
+import Footer from "./Components/Footer/Footer";
 import Navbar from "./Components/NavBar/Navbar";
 import RequireAuth from "./Hooks/RequireAuth";
 import AllProducts from "./Pages/AllProducts/AllProducts";
@@ -18,6 +19,7 @@ import ManageAllOrders from "./Pages/Outlates/ManageAllOrders/ManageAllOrders";
 import ManageProducts from "./Pages/Outlates/ManageProducts/ManageProducts";
 import MyOrders from "./Pages/Outlates/MyOrders/MyOrders";
 import MyProfile from "./Pages/Outlates/MyProfile/MyProfile";
+import Payment from "./Pages/Payment/Payment";
 import Register from "./Pages/Register/Register";
 import ThankYou from "./Pages/ThankYou/ThankYou";
 
@@ -69,15 +71,24 @@ function App() {
         ></Route>
         <Route path="all-reviews" element={<AllReviews></AllReviews>}></Route>
         <Route
-          path="order/:id"
+          path="order/:productId"
           element={
             <RequireAuth>
               <Order></Order>
             </RequireAuth>
           }
         ></Route>
+        <Route
+          path="payment/:orderId"
+          element={
+            <RequireAuth>
+              <Payment></Payment>
+            </RequireAuth>
+          }
+        ></Route>
         <Route path="thank-you" element={<ThankYou></ThankYou>}></Route>
       </Routes>
+      <Footer></Footer>
       <ToastContainer />
     </div>
   );

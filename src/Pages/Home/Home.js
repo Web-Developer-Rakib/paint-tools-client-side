@@ -2,7 +2,6 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import Banner from "../../Components/Banner/Banner";
 import BusinessSummary from "../../Components/BusinessSummary/BusinessSummary";
-import Footer from "../../Components/Footer/Footer";
 import ProductsCard from "../../Components/ProductsCard/ProductsCard";
 import ReviewCard from "../../Components/ReviewCard/ReviewCard";
 import useGetAllProducts from "../../Hooks/useGetAllProducts";
@@ -50,7 +49,6 @@ const Home = () => {
         <h3 className="text-2xl text-center my-5">Business summary</h3>
         <BusinessSummary></BusinessSummary>
       </section>
-      <Footer></Footer>
     </div>
   );
 };

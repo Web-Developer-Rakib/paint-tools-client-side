@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import { toast } from "react-toastify";
 import useGetUsers from "../../../Hooks/useGetUsers";
 
 const MakeAdmin = () => {
-  const { users } = useGetUsers();
+  const [isLoad, setIsLoad] = useState(false);
+  const { users } = useGetUsers(isLoad);
   //Make admin
   const handleMakeAdmin = (email) => {
     const admin = true;
@@ -19,6 +20,7 @@ const MakeAdmin = () => {
       .then((response) => response.json())
       .then(() => {
         toast.success("Admin created successfuly.");
+        setIsLoad(!isLoad);
       })
       .catch(() => {
         toast.error("Something went wrong.");
@@ -47,7 +49,7 @@ const MakeAdmin = () => {
                   {!user?.admin && (
                     <button
                       onClick={() => handleMakeAdmin(user?.email)}
-                      className="btn bg-green-500"
+                      className="btn btn-success"
                     >
                       Make admin
                     </button>
