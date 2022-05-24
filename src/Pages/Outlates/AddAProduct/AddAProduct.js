@@ -46,7 +46,10 @@ const AddAProduct = () => {
     <div>
       <h2 className="text-3xl my-5 ml-8">Add a product</h2>
       <div className="flex justify-center">
-        <form onSubmit={addAProduct} class="form-control">
+        <form
+          onSubmit={addAProduct}
+          class="form-control card w-150 bg-base-100 shadow-xl pl-10 py-10"
+        >
           <label class="input-group input-group-sm my-2">
             <span>Product name</span>
             <input
@@ -98,9 +101,9 @@ const AddAProduct = () => {
           </label>
           <label class="input-group input-group-sm my-2">
             <span>Product image</span>
-            <input type="file" class="input input-bordered input-md" />
+            <input type="file" />
           </label>
-          <div className="flex">
+          <div className="flex mt-5">
             <button className="btn bg-indigo-700">Add product</button>
           </div>
         </form>
