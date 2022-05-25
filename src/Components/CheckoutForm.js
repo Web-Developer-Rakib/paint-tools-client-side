@@ -16,7 +16,6 @@ const CheckoutForm = ({ orderedItem }) => {
       method: "POST",
       headers: {
         "content-type": "application/json",
-        // authorization: `Bearer ${localStorage.getItem("accessToken")}`,
       },
       body: JSON.stringify({ totalPrice }),
     })
@@ -68,7 +67,6 @@ const CheckoutForm = ({ orderedItem }) => {
       method: "PATCH",
       headers: {
         "content-type": "application/json",
-        // authorization: `Bearer ${localStorage.getItem("accessToken")}`,
       },
     })
       .then((res) => res.json())

@@ -1,5 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import AboutUs from "../../Components/AboutUs/AboutUs";
 import Banner from "../../Components/Banner/Banner";
 import BusinessSummary from "../../Components/BusinessSummary/BusinessSummary";
 import ProductsCard from "../../Components/ProductsCard/ProductsCard";
@@ -53,6 +54,10 @@ const Home = () => {
       <section className="mb-10">
         <h3 className="text-2xl text-center my-5">Business summary</h3>
         <BusinessSummary></BusinessSummary>
+      </section>
+      <section className="mb-10">
+        <h3 className="text-2xl text-center my-5">Business summary</h3>
+        <AboutUs></AboutUs>
       </section>
     </div>
   );

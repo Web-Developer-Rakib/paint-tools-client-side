@@ -5,14 +5,21 @@ import useFirebase from "../../../Hooks/useFirebase";
 const AddAReview = () => {
   const [count, setCount] = useState(5);
   const { userInfo } = useFirebase();
-  const { displayName, photoURL } = userInfo;
+  const { displayName, photoURL, email } = userInfo;
   const handleSubmitReview = (e) => {
     e.preventDefault();
     const reviewersName = displayName;
+    const reviewersEmail = email;
     const rating = count;
     const comment = e.target.comment.value;
     const reviewersPhoto = photoURL;
-    const reviewersData = { reviewersName, rating, comment, reviewersPhoto };
+    const reviewersData = {
+      reviewersName,
+      reviewersEmail,
+      rating,
+      comment,
+      reviewersPhoto,
+    };
 
     fetch("http://localhost:5000/add-review", {
       method: "POST",

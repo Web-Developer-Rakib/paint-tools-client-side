@@ -26,7 +26,7 @@ const Navbar = () => {
       <li>
         <NavLink to="/blogs">Blogs</NavLink>
       </li>
-      <li>{userInfo && <NavLink to="/dashboard">Dashbord</NavLink>}</li>
+      <li>{userInfo && <NavLink to="/dashboard">Dashboard</NavLink>}</li>
     </>
   );
   const btnSet = (

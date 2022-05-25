@@ -8,10 +8,12 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import auth from "../firebase_init";
 import usePutUsers from "./usePutUsers";
+import useToken from "./useToken";
 
 const useFirebase = () => {
   const [userInfo, setUserInfo] = useState({});
   const { putUsersToDb } = usePutUsers();
+  const { handleJWT } = useToken();
   const location = useLocation();
   const navigate = useNavigate();
   const from = location.state?.from?.pathname || "/";
@@ -27,6 +29,7 @@ const useFirebase = () => {
         const usersData = { email, admin, name };
         setUserInfo(user);
         putUsersToDb(usersData);
+        handleJWT(email);
         navigate(from, { replace: true });
       })
       .catch((error) => {

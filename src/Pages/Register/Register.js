@@ -9,11 +9,13 @@ import { toast } from "react-toastify";
 import auth from "../../firebase_init";
 import useFirebase from "../../Hooks/useFirebase";
 import usePutUsers from "../../Hooks/usePutUsers";
+import useToken from "../../Hooks/useToken";
 import "./Register.css";
 
 const Register = () => {
   const { setUserInfo, handleGoogleProvider } = useFirebase();
   const { putUsersToDb } = usePutUsers();
+  const { handleJWT } = useToken();
   const navigate = useNavigate();
   const admin = false;
   const handleRegister = (e) => {
@@ -35,6 +37,7 @@ const Register = () => {
           setUserInfo(user);
           sendEmailVerification(auth.currentUser);
           putUsersToDb(usersData);
+          handleJWT(user.email);
           navigate("/thank-you");
         })
         .catch((error) => {

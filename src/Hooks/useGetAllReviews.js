@@ -7,7 +7,7 @@ const useGetAllReviews = () => {
       .then((res) => res.json())
       .then((data) => setReviews(data));
   }, []);
-  return { reviews, setReviews };
+  return { reviews };
 };
 
 export default useGetAllReviews;

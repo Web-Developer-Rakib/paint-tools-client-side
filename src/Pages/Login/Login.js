@@ -3,16 +3,20 @@ import {
   signInWithEmailAndPassword,
 } from "firebase/auth";
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import auth from "../../firebase_init";
 import useFirebase from "../../Hooks/useFirebase";
+import useToken from "../../Hooks/useToken";
 import "./Login.css";
 
 const Login = () => {
   const { setUserInfo, handleGoogleProvider } = useFirebase();
+  const { handleJWT } = useToken();
   const [email, setEmail] = useState("");
+  const location = useLocation();
   const navigate = useNavigate();
+  const from = location.state?.from?.pathname || "/";
   const handleLogin = (e) => {
     e.preventDefault();
     setEmail(e.target.email.value);
@@ -21,7 +25,8 @@ const Login = () => {
       .then((userCredential) => {
         const user = userCredential.user;
         setUserInfo(user);
-        navigate("/thank-you");
+        handleJWT(user.email);
+        navigate(from, { replace: true });
       })
       .catch((error) => {
         const errorMessage = error.message;
