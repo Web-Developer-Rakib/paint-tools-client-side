@@ -6,7 +6,8 @@ import useGetUsers from "../../../Hooks/useGetUsers";
 const AddAReview = () => {
   const [count, setCount] = useState(5);
   const { userInfo } = useFirebase();
-  const { users } = useGetUsers();
+  const [isLoad, setIsLoad] = useState(false);
+  const { users } = useGetUsers(isLoad);
   const currentUser = users.filter((user) => user.email === userInfo.email);
   const reviewed = currentUser[0]?.review;
   const { displayName, photoURL, email } = userInfo;
@@ -45,6 +46,7 @@ const AddAReview = () => {
           .then((response) => response.json())
           .then(() => {
             toast.success("Review submitted successfuly.");
+            setIsLoad(!isLoad);
           });
       })
       .catch(() => {

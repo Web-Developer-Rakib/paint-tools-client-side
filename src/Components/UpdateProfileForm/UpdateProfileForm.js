@@ -3,10 +3,8 @@ import React from "react";
 import { toast } from "react-toastify";
 import auth from "../../firebase_init";
 import useFirebase from "../../Hooks/useFirebase";
-import usePutUsers from "../../Hooks/usePutUsers";
 
 const UpdateProfileForm = ({ setUpdateProfileForm, isload, setIsload }) => {
-  const { putUsersToDb } = usePutUsers();
   const { userInfo } = useFirebase();
 
   const handleCancle = () => {
@@ -20,7 +18,7 @@ const UpdateProfileForm = ({ setUpdateProfileForm, isload, setIsload }) => {
     const address = e.target.address.value;
     const photoURL = e.target.photoURL.value;
     // const review = false;
-    const updatedUsersData = { name, address };
+    const updatedUsersData = { email, name, address };
     const reviewersData = { email, name, photoURL };
     updateProfile(auth.currentUser, {
       displayName: name,
@@ -35,7 +33,7 @@ const UpdateProfileForm = ({ setUpdateProfileForm, isload, setIsload }) => {
           body: JSON.stringify(updatedUsersData),
         })
           .then((response) => response.json())
-          .then((data) => {
+          .then(() => {
             // setData(data);
           })
           .catch((error) => {
