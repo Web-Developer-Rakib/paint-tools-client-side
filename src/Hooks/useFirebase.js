@@ -20,13 +20,14 @@ const useFirebase = () => {
   //Google signup
   const googleProvider = new GoogleAuthProvider();
   const admin = false;
+  const review = false;
   const handleGoogleProvider = () => {
     signInWithPopup(auth, googleProvider)
       .then((result) => {
         const user = result.user;
         const email = user.email;
         const name = user.displayName;
-        const usersData = { email, admin, name };
+        const usersData = { email, admin, name, review };
         setUserInfo(user);
         putUsersToDb(usersData);
         handleJWT(email);

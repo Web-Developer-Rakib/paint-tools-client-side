@@ -1,12 +1,23 @@
-import React from "react";
+import { faPencil } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import React, { useState } from "react";
+import UpdateProfileForm from "../../../Components/UpdateProfileForm/UpdateProfileForm";
 import useFirebase from "../../../Hooks/useFirebase";
 import useGetUsers from "../../../Hooks/useGetUsers";
 import defaultAvatar from "../../../Images/avatar.png";
 
 const MyProfile = () => {
   const { userInfo } = useFirebase();
+  const [updateProfileForm, setUpdateProfileForm] = useState("");
   const { users } = useGetUsers();
   const { displayName, email, metadata, phoneNumber, photoURL } = userInfo;
+  const handleUpdateProfileIcon = () => {
+    setUpdateProfileForm(
+      <UpdateProfileForm
+        setUpdateProfileForm={setUpdateProfileForm}
+      ></UpdateProfileForm>
+    );
+  };
   return (
     <div>
       <h2 className="text-3xl my-5 ml-8">My profile</h2>
@@ -27,7 +38,7 @@ const MyProfile = () => {
                   <h2 class="card-title">{displayName}</h2>
                   <p>
                     <b>Email: </b>
-                    {email}
+                    {user?.email}
                   </p>
                   <p>
                     <b>Member since: </b>
@@ -38,19 +49,29 @@ const MyProfile = () => {
                     {phoneNumber === null && "Not added yet"}
                   </p>
                   <p>
+                    <b>Address: </b>
+                    {user?.address}
+                  </p>
+                  <p>
                     <b>Current role: </b>
                     {user?.admin ? <span>Admin</span> : <span>Customer</span>}
                   </p>
                   <div class="card-actions">
-                    <a href="#updateUserModal" class="btn btn-success">
-                      Update Now
-                    </a>
+                    <div class="tooltip" data-tip="Update profile">
+                      <button
+                        onClick={handleUpdateProfileIcon}
+                        class="btn btn-success"
+                      >
+                        <FontAwesomeIcon icon={faPencil}></FontAwesomeIcon>
+                      </button>
+                    </div>
                   </div>
                 </div>
               </div>
             )
         )}
       </div>
+      <section className="my-10">{updateProfileForm}</section>
     </div>
   );
 };

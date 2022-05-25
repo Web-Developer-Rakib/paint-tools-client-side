@@ -60,7 +60,7 @@ const Home = () => {
         </h3>
         <BusinessSummary></BusinessSummary>
       </section>
-      <section className="mb-10">
+      <section className="mb-10" id="about-us">
         <h3 className="text-2xl text-center my-5 uppercase font-bold">
           About us
         </h3>
