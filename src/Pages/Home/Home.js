@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import AboutUs from "../../Components/AboutUs/AboutUs";
 import Banner from "../../Components/Banner/Banner";
 import BusinessSummary from "../../Components/BusinessSummary/BusinessSummary";
+import Faq from "../../Components/Faq/Faq";
 import ProductsCard from "../../Components/ProductsCard/ProductsCard";
 import ReviewCard from "../../Components/ReviewCard/ReviewCard";
 import useGetAllProducts from "../../Hooks/useGetAllProducts";
@@ -20,7 +21,9 @@ const Home = () => {
         <Banner></Banner>
       </div>
       <section className="ml-5 mr-5 mb-10">
-        <h3 className="text-2xl text-center my-5">Products</h3>
+        <h3 className="text-2xl text-center my-5 uppercase font-bold">
+          Products
+        </h3>
         <div className="flex justify-evenly flex-wrap">
           {productSlice.map((product) => (
             <ProductsCard product={product}></ProductsCard>
@@ -36,7 +39,7 @@ const Home = () => {
         </div>
       </section>
       <section className="ml-5 mr-5 mb-10">
-        <h3 className="text-2xl text-center my-5">Reviews</h3>
+        <h3 className="text-2xl text-center my-5  font-bold">Reviews</h3>
         <div className="flex justify-evenly flex-wrap">
           {reviewSlice.map((review) => (
             <ReviewCard review={review}></ReviewCard>
@@ -52,12 +55,20 @@ const Home = () => {
         </div>
       </section>
       <section className="mb-10">
-        <h3 className="text-2xl text-center my-5">Business summary</h3>
+        <h3 className="text-2xl text-center my-5 uppercase font-bold">
+          Business summary
+        </h3>
         <BusinessSummary></BusinessSummary>
       </section>
       <section className="mb-10">
-        <h3 className="text-2xl text-center my-5">Business summary</h3>
+        <h3 className="text-2xl text-center my-5 uppercase font-bold">
+          About us
+        </h3>
         <AboutUs></AboutUs>
+      </section>
+      <section className="ml-5 mr-5 mb-10">
+        <h3 className="text-2xl text-center my-5 uppercase font-bold">Faq</h3>
+        <Faq></Faq>
       </section>
     </div>
   );
