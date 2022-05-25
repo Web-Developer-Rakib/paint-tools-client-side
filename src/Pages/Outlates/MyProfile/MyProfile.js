@@ -9,12 +9,15 @@ import defaultAvatar from "../../../Images/avatar.png";
 const MyProfile = () => {
   const { userInfo } = useFirebase();
   const [updateProfileForm, setUpdateProfileForm] = useState("");
-  const { users } = useGetUsers();
-  const { displayName, email, metadata, phoneNumber, photoURL } = userInfo;
+  const [isload, setIsload] = useState(false);
+  const { users } = useGetUsers(isload);
+  const { displayName, email, metadata, photoURL } = userInfo;
   const handleUpdateProfileIcon = () => {
     setUpdateProfileForm(
       <UpdateProfileForm
         setUpdateProfileForm={setUpdateProfileForm}
+        setIsload={setIsload}
+        isload={isload}
       ></UpdateProfileForm>
     );
   };
@@ -43,10 +46,6 @@ const MyProfile = () => {
                   <p>
                     <b>Member since: </b>
                     {metadata?.creationTime}
-                  </p>
-                  <p>
-                    <b>Phone number: </b>
-                    {phoneNumber === null && "Not added yet"}
                   </p>
                   <p>
                     <b>Address: </b>

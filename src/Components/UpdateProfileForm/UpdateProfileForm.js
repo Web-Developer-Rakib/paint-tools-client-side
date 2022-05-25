@@ -1,36 +1,62 @@
 import { updateProfile } from "firebase/auth";
-import React, { useState } from "react";
+import React from "react";
 import { toast } from "react-toastify";
 import auth from "../../firebase_init";
+import useFirebase from "../../Hooks/useFirebase";
 import usePutUsers from "../../Hooks/usePutUsers";
 
-const UpdateProfileForm = ({ setUpdateProfileForm }) => {
-  const [name, setName] = useState("");
-  const [phoneNumber, setPhoneNumber] = useState("");
-  const [address, setAddress] = useState("");
-  const [avatarUrl, setAvatarUrl] = useState("");
+const UpdateProfileForm = ({ setUpdateProfileForm, isload, setIsload }) => {
   const { putUsersToDb } = usePutUsers();
-  const updatedUser = { name, address };
+  const { userInfo } = useFirebase();
 
-  //   const handleCancle = () => {
-  //     setUpdateProfileForm("");
-  //   };
+  const handleCancle = () => {
+    setUpdateProfileForm("");
+  };
 
   const handleUpdateProfile = (e) => {
     e.preventDefault();
+    const email = userInfo?.email;
+    const name = e.target.name.value;
+    const address = e.target.address.value;
+    const photoURL = e.target.photoURL.value;
+    // const review = false;
+    const updatedUsersData = { name, address };
+    const reviewersData = { email, name, photoURL };
     updateProfile(auth.currentUser, {
-      displayName: { name },
-      //   photoURL: { avatarUrl },
-      //   phoneNumber: { phoneNumber },
+      displayName: name,
+      photoURL: photoURL,
     })
       .then(() => {
-        console.log("Click");
-        toast.success("Profile Updated.");
-        // putUsersToDb(updatedUser);
-        // setUpdateProfileForm("");
+        fetch("http://localhost:5000/update-user", {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(updatedUsersData),
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            // setData(data);
+          })
+          .catch((error) => {
+            // setError(error);
+          });
+        fetch(`http://localhost:5000/update-reviewers-info`, {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(reviewersData),
+        })
+          .then((response) => response.json())
+          .then(() => {
+            toast.success("Profile updated successfuly.");
+          });
+        setUpdateProfileForm("");
+        setIsload(!isload);
       })
-      .catch((error) => {
-        toast.error(error.massage);
+      .catch(() => {
+        toast.error("Something went wrong.");
       });
   };
   return (
@@ -45,19 +71,8 @@ const UpdateProfileForm = ({ setUpdateProfileForm }) => {
             type="text"
             placeholder="Enter your full name"
             class="input input-bordered input-sm"
-            onChange={(e) => setName(e.target.value)}
             required
-          />
-        </label>
-
-        <label class="input-group input-group-sm my-2">
-          <span>Phone number</span>
-          <input
-            type="texe"
-            placeholder="Enter your phone number"
-            class="input input-bordered input-sm"
-            onChange={(e) => setPhoneNumber(e.target.value)}
-            required
+            name="name"
           />
         </label>
         <label class="input-group input-group-sm my-2">
@@ -66,8 +81,8 @@ const UpdateProfileForm = ({ setUpdateProfileForm }) => {
             type="text"
             placeholder="Enter your address"
             class="input input-bordered input-sm"
-            onChange={(e) => setAddress(e.target.value)}
             required
+            name="address"
           />
         </label>
         <label class="input-group input-group-sm my-2">
@@ -76,14 +91,14 @@ const UpdateProfileForm = ({ setUpdateProfileForm }) => {
             type="text"
             class="input input-bordered input-sm"
             placeholder="Enter the avatar URL"
-            onChange={(e) => setAvatarUrl(e.target.value)}
+            name="photoURL"
           />
         </label>
         <div className="flex justify-around mt-5">
           <button className="btn btn-success">Update profile</button>
-          {/* <button onClick={handleCancle} className="btn btn-error">
+          <button onClick={handleCancle} className="btn btn-error">
             Cancle
-          </button> */}
+          </button>
         </div>
       </form>
     </div>

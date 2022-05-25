@@ -17,6 +17,7 @@ const Register = () => {
   const { putUsersToDb } = usePutUsers();
   const { handleJWT } = useToken();
   const navigate = useNavigate();
+  const address = "Not added yet";
   const admin = false;
   const review = false;
   const handleRegister = (e) => {
@@ -25,7 +26,7 @@ const Register = () => {
     const email = e.target.email.value;
     const password = e.target.password.value;
     const confirmPassword = e.target.confirmPassword.value;
-    const usersData = { email, admin, name, review };
+    const usersData = { email, admin, name, review, address };
     if (password !== confirmPassword) {
       toast.warn("Password did not matched.");
     } else {

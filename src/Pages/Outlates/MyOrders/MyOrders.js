@@ -7,6 +7,7 @@ const MyOrders = () => {
   const { orders } = useGetOrdersInfo();
   const { userInfo } = useFirebase();
   const navigate = useNavigate();
+  console.log(userInfo);
   return (
     <div>
       <h2 className=" text-3xl my-5 ml-8">My orders</h2>

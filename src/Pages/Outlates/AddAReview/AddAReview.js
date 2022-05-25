@@ -26,7 +26,6 @@ const AddAReview = () => {
       comment,
       reviewersPhoto,
     };
-
     fetch("http://localhost:5000/add-review", {
       method: "POST",
       headers: {
@@ -45,7 +44,7 @@ const AddAReview = () => {
         })
           .then((response) => response.json())
           .then(() => {
-            toast.success("Review submitted successfuly successfuly.");
+            toast.success("Review submitted successfuly.");
           });
       })
       .catch(() => {
@@ -94,7 +93,7 @@ const AddAReview = () => {
                     type="radio"
                     name="rating-2"
                     class="mask mask-star-2 bg-orange-400"
-                    onClick={() => setCount(3)}
+                    onClick={() => setCount(4)}
                   />
                   <input
                     type="radio"
