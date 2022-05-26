@@ -22,6 +22,7 @@ import ManageProducts from "./Pages/Outlates/ManageProducts/ManageProducts";
 import MyOrders from "./Pages/Outlates/MyOrders/MyOrders";
 import MyProfile from "./Pages/Outlates/MyProfile/MyProfile";
 import Payment from "./Pages/Payment/Payment";
+import PaymentSuccess from "./Pages/PaymentSuccess/PaymentSuccess";
 import Register from "./Pages/Register/Register";
 import ThankYou from "./Pages/ThankYou/ThankYou";
 
@@ -93,6 +94,10 @@ function App() {
           element={<MyPortfolio></MyPortfolio>}
         ></Route>
         <Route path="thank-you" element={<ThankYou></ThankYou>}></Route>
+        <Route
+          path="payment-success"
+          element={<PaymentSuccess></PaymentSuccess>}
+        ></Route>
         <Route path="*" element={<NotFound></NotFound>}></Route>
       </Routes>
       <Footer></Footer>

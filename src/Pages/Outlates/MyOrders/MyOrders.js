@@ -19,6 +19,7 @@ const MyOrders = () => {
               <th>Total price</th>
               <th>Order quantity</th>
               <th>Payment status</th>
+              <th>Shipping status</th>
             </tr>
           </thead>
           <tbody>
@@ -40,6 +41,17 @@ const MyOrders = () => {
                         >
                           Pay now
                         </button>
+                      )}
+                    </td>
+                    <td>
+                      {order?.shift ? (
+                        <p className="uppercase font-bold text-success">
+                          Shipped
+                        </p>
+                      ) : (
+                        <p className="uppercase font-bold text-warning">
+                          Pending
+                        </p>
                       )}
                     </td>
                   </tr>

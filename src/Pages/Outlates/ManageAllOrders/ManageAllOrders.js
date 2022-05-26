@@ -18,8 +18,8 @@ const ManageAllOrders = () => {
       body: JSON.stringify(shippingData),
     })
       .then((response) => response.json())
-      .then((data) => {
-        toast.success("Product shifted successfuly.");
+      .then(() => {
+        toast.success("Product shipped successfuly.");
         setIsLoad(!isLoad);
       })
       .catch(() => {
@@ -47,18 +47,16 @@ const ManageAllOrders = () => {
                 <td>{order?.quantity} units</td>
                 <td>
                   {!order?.paid ? (
-                    <p className="uppercase font-bold text-warning">
-                      Not paid yet
-                    </p>
+                    <p className="uppercase font-bold text-warning">Not paid</p>
                   ) : order?.paid && !order?.shift ? (
                     <button
                       onClick={() => handleShift(order?._id)}
                       className="btn btn-success"
                     >
-                      Shift now
+                      Confirm
                     </button>
                   ) : (
-                    <p className="uppercase font-bold text-success">Shifted</p>
+                    <p className="uppercase font-bold text-success">Shipped</p>
                   )}
                 </td>
               </tr>

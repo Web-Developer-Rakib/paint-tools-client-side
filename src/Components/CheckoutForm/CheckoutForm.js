@@ -1,5 +1,6 @@
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const CheckoutForm = ({ orderedItem }) => {
   const stripe = useStripe();
@@ -10,6 +11,7 @@ const CheckoutForm = ({ orderedItem }) => {
   const [transactionId, setTransactionId] = useState("");
   const [clientSecret, setClientSecret] = useState("");
   const { totalPrice, customerName, customerEmail, _id } = orderedItem;
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetch("http://localhost:5000/create-payment-intent", {
@@ -62,17 +64,18 @@ const CheckoutForm = ({ orderedItem }) => {
       setCardError("");
       setTransactionId(paymentIntent.id);
       setSuccess("Your payment is completed.");
+      fetch(`http://localhost:5000/update-payment-status/${_id}`, {
+        method: "PATCH",
+        headers: {
+          "content-type": "application/json",
+        },
+      })
+        .then((res) => res.json())
+        .then(() => {
+          setProcessing(false);
+        });
+      navigate("/payment-success");
     }
-    fetch(`http://localhost:5000/update-payment-status/${_id}`, {
-      method: "PATCH",
-      headers: {
-        "content-type": "application/json",
-      },
-    })
-      .then((res) => res.json())
-      .then(() => {
-        setProcessing(false);
-      });
   };
   return (
     <>
