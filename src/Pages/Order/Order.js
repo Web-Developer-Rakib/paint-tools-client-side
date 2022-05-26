@@ -1,11 +1,14 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import useAdmin from "../../Hooks/useAdmin";
 import useFirebase from "../../Hooks/useFirebase";
 import useGetSingleProduct from "../../Hooks/useGetSingleProduct";
 
 const Order = () => {
   const { product } = useGetSingleProduct();
+  const { admin } = useAdmin();
+
   const { productName, avaiableStock, minimumOrder, imageUrl } = product;
   const { userInfo } = useFirebase();
   const navigate = useNavigate();
@@ -60,24 +63,40 @@ const Order = () => {
         <img src={imageUrl} alt="" class="max-w-sm rounded-lg shadow-2xl" />
         <form onSubmit={handlePlaceOrder}>
           <h1 class="text-5xl font-bold">Welcome to order page</h1>
-          <p class="py-6">
-            Dear {userInfo?.displayName}, <br />
-            Thank's for ordering <b>{productName}</b>. Currently we have{" "}
-            <b>{avaiableStock}</b> unites available. And our minimum order
-            quantity is <b>{minimumOrder}</b>. Please make sure that before
-            place order. <br /> Thank you.
-          </p>
-          <label class="input-group input-group-sm my-5">
-            <span>Quantity</span>
-            <input
-              type="number"
-              placeholder="Enter quantity"
-              class="input input-bordered input-sm"
-              name="quantity"
-              required
-            />
-          </label>
-          <button class="btn btn-primary">Add to wishlist</button>
+          {admin ? (
+            <>
+              <p class="py-6">
+                Sorry {userInfo?.displayName}, <br />
+                Only customers can purchase product's. If you want to purchase
+                this item. Please login from a customer accont. <br /> Thank
+                you.
+              </p>
+              <button onClick={() => navigate("/")} class="btn btn-primary">
+                Go to home
+              </button>
+            </>
+          ) : (
+            <>
+              <p class="py-6">
+                Dear {userInfo?.displayName}, <br />
+                Thank's for ordering <b>{productName}</b>. Currently we have{" "}
+                <b>{avaiableStock}</b> unites available. And our minimum order
+                quantity is <b>{minimumOrder}</b>. Please make sure that before
+                place order. <br /> Thank you.
+              </p>
+              <label class="input-group input-group-sm my-5">
+                <span>Quantity</span>
+                <input
+                  type="number"
+                  placeholder="Enter quantity"
+                  class="input input-bordered input-sm"
+                  name="quantity"
+                  required
+                />
+              </label>
+              <button class="btn btn-primary">Add to wishlist</button>
+            </>
+          )}
         </form>
       </div>
     </div>
