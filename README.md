@@ -1,4 +1,4 @@
-# Getting Started with Create React App
+# Paint tools
 
 ## Live site link [Click here](https://paint-tools-b219b.web.app/).
 
