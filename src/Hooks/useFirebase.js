@@ -33,6 +33,7 @@ const useFirebase = () => {
         putUsersToDb(usersData);
         handleJWT(email);
         navigate(from, { replace: true });
+        toast.success("Login successfull.");
       })
       .catch((error) => {
         const errorMessage = error.message;

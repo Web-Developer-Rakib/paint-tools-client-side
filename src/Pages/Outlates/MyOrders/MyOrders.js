@@ -32,9 +32,7 @@ const MyOrders = () => {
                     <td>{order?.quantity} units</td>
                     <td>
                       {order?.paid ? (
-                        <p className=" text-bold text-2xl text-green-500">
-                          PAID
-                        </p>
+                        <p className="uppercase font-bold text-success">Paid</p>
                       ) : (
                         <button
                           onClick={() => navigate(`/payment/${order?._id}`)}
