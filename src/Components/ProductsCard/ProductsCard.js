@@ -3,8 +3,15 @@ import { useNavigate } from "react-router-dom";
 import "./ProductCard.css";
 
 const ProductsCard = ({ product }) => {
-  const { productName, price, avaiableStock, minimumOrder, description, _id } =
-    product;
+  const {
+    productName,
+    price,
+    avaiableStock,
+    minimumOrder,
+    description,
+    imageUrl,
+    _id,
+  } = product;
   const navigate = useNavigate();
   const handleOrder = (id) => {
     navigate(`/order/${id}`);
@@ -12,10 +19,7 @@ const ProductsCard = ({ product }) => {
   return (
     <div key={_id} class="card w-80 bg-base-100 shadow-xl mb-5">
       <figure>
-        <img
-          src="https://api.lorem.space/image/shoes?w=400&h=225"
-          alt="Shoes"
-        />
+        <img src={imageUrl} alt="Shoes" />
       </figure>
       <div class="card-body">
         <h2 class="card-title">{productName}</h2>

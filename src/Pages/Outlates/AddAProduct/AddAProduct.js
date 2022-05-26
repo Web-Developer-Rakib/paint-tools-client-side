@@ -13,6 +13,7 @@ const AddAProduct = () => {
     const avaiableStock = e.target.avaiableStock.value;
     const minimumOrder = e.target.minimumOrder.value;
     const description = e.target.description.value;
+    const imageUrl = e.target.imageUrl.value;
     const productsInfo = {
       productName,
       userName,
@@ -21,9 +22,12 @@ const AddAProduct = () => {
       avaiableStock,
       minimumOrder,
       description,
+      imageUrl,
     };
     if (price < 1 || avaiableStock < 1 || minimumOrder < 1) {
       toast.warn("All fields need positive amount.");
+    } else if (minimumOrder > avaiableStock) {
+      toast.warn("Minimum order quantity should be more then available stock.");
     } else {
       fetch("http://localhost:5000/add-product", {
         method: "POST",
@@ -54,7 +58,7 @@ const AddAProduct = () => {
             <span>Product name</span>
             <input
               type="text"
-              placeholder="Enter the product name"
+              placeholder="Product name"
               class="input input-bordered input-sm"
               name="productName"
               required
@@ -101,7 +105,13 @@ const AddAProduct = () => {
           </label>
           <label class="input-group input-group-sm my-2">
             <span>Product image</span>
-            <input type="file" />
+            <input
+              type="url"
+              placeholder="Product image url"
+              class="input input-bordered input-sm"
+              name="imageUrl"
+              required
+            />
           </label>
           <div className="flex mt-5">
             <button className="btn bg-indigo-700">Add product</button>

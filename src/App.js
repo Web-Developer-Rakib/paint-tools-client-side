@@ -11,6 +11,7 @@ import Blogs from "./Pages/Blogs/Blogs";
 import Dashbord from "./Pages/Dashboard/Dashbord";
 import Home from "./Pages/Home/Home";
 import Login from "./Pages/Login/Login";
+import MyPortfolio from "./Pages/MyPortfolio/MyPortfolio";
 import NotFound from "./Pages/NotFound/NotFound";
 import Order from "./Pages/Order/Order";
 import AddAProduct from "./Pages/Outlates/AddAProduct/AddAProduct";
@@ -86,6 +87,10 @@ function App() {
               <Payment></Payment>
             </RequireAuth>
           }
+        ></Route>
+        <Route
+          path="my-portfolio"
+          element={<MyPortfolio></MyPortfolio>}
         ></Route>
         <Route path="thank-you" element={<ThankYou></ThankYou>}></Route>
         <Route path="*" element={<NotFound></NotFound>}></Route>

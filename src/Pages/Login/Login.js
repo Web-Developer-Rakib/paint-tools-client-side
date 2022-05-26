@@ -26,6 +26,7 @@ const Login = () => {
         const user = userCredential.user;
         setUserInfo(user);
         handleJWT(user.email);
+        toast.success("Login Successful.");
         navigate(from, { replace: true });
       })
       .catch((error) => {
@@ -70,7 +71,7 @@ const Login = () => {
       });
   };
   return (
-    <div>
+    <div className="h-screen">
       <div className="flex justify-center">
         <div className="login-form-container">
           <div>
