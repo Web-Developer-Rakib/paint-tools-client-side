@@ -25,7 +25,7 @@ const UpdateProfileForm = ({ setUpdateProfileForm, isload, setIsload }) => {
       photoURL: photoURL,
     })
       .then(() => {
-        fetch("http://localhost:5000/update-user", {
+        fetch("https://painttools.herokuapp.com/update-user", {
           method: "PUT",
           headers: {
             "Content-Type": "application/json",
@@ -39,7 +39,7 @@ const UpdateProfileForm = ({ setUpdateProfileForm, isload, setIsload }) => {
           .catch((error) => {
             // setError(error);
           });
-        fetch(`http://localhost:5000/update-reviewers-info`, {
+        fetch(`https://painttools.herokuapp.com/update-reviewers-info`, {
           method: "PUT",
           headers: {
             "Content-Type": "application/json",

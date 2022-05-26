@@ -11,7 +11,7 @@ const Payment = () => {
   const [orderedItem, setOrderedItem] = useState({});
   const { orderId } = useParams();
   useEffect(() => {
-    fetch(`http://localhost:5000/order/${orderId}`)
+    fetch(`https://painttools.herokuapp.com/order/${orderId}`)
       .then((res) => res.json())
       .then((data) => setOrderedItem(data));
   }, [orderId]);
