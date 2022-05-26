@@ -45,9 +45,6 @@ const Login = () => {
         if (errorMessage === "Firebase: Error (auth/user-not-found).") {
           toast.warn("This email is not registered yet.");
         }
-        if (errorMessage === "Firebase: Error (auth/invalid-email).") {
-          toast.warn("Please enter a valid email.");
-        }
       })
       .finally(() => {
         setLoading("");
