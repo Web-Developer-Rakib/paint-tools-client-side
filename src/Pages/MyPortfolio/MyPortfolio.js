@@ -32,27 +32,33 @@ const MyPortfolio = () => {
             <h3 className="text-center mb-5 rounded-sm text-2xl font-bold uppercase">
               recent projects
             </h3>
-            <div className="flex justify-around flex-wrap rounded-sm">
+            <div className="flex justify-around flex-wrap rounded-sm ">
               <a
                 href="https://fragrance-wms.web.app/"
                 rel="noreferrer"
                 target="_blank"
               >
-                <button class="btn btn-primary">Fragrance WMS</button>
+                <button class="btn btn-primary mb-2 lg:mb-0">
+                  Fragrance WMS
+                </button>
               </a>
               <a
                 href="https://robert-carlson-seo.web.app/"
                 rel="noreferrer"
                 target="_blank"
               >
-                <button class="btn btn-primary">Robert Carlson</button>
+                <button class="btn btn-primary mb-2 lg:mb-0">
+                  Robert Carlson
+                </button>
               </a>
               <a
                 href="https://canon-eos-700d-review-developed-by-rakib.netlify.app/"
                 rel="noreferrer"
                 target="_blank"
               >
-                <button class="btn btn-primary">Canon EOS 700D Review</button>
+                <button class="btn btn-primary mb-2 lg:mb-0">
+                  Canon EOS 700D Review
+                </button>
               </a>
             </div>
             <div
