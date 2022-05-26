@@ -12,12 +12,14 @@ import "./Login.css";
 
 const Login = () => {
   const { setUserInfo, handleGoogleProvider } = useFirebase();
+  const [loading, setLoading] = useState("");
   const { handleJWT } = useToken();
   const [email, setEmail] = useState("");
   const location = useLocation();
   const navigate = useNavigate();
   const from = location.state?.from?.pathname || "/";
   const handleLogin = (e) => {
+    setLoading(<progress class="progress w-56"></progress>);
     e.preventDefault();
     setEmail(e.target.email.value);
     const password = e.target.password.value;
@@ -46,6 +48,9 @@ const Login = () => {
         if (errorMessage === "Firebase: Error (auth/invalid-email).") {
           toast.warn("Please enter a valid email.");
         }
+      })
+      .finally(() => {
+        setLoading("");
       });
   };
   //Password reset function
@@ -98,6 +103,7 @@ const Login = () => {
               </div>
             </form>
             <div class="divider">OR</div>
+            {loading}
             <div className="flex justify-center">
               <button
                 onClick={handleGoogleProvider}

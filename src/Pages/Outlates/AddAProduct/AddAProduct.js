@@ -27,7 +27,9 @@ const AddAProduct = () => {
     if (price < 1 || avaiableStock < 1 || minimumOrder < 1) {
       toast.warn("All fields need positive amount.");
     } else if (minimumOrder > avaiableStock) {
-      toast.warn("Minimum order quantity should be more then available stock.");
+      toast.warn(
+        "Minimum order quantity should not be more then available stock."
+      );
     } else {
       fetch("http://localhost:5000/add-product", {
         method: "POST",

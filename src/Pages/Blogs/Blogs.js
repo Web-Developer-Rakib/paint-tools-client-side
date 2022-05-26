@@ -50,17 +50,6 @@ const Blogs = () => {
           class="collapse collapse-open border border-base-300 bg-base-100 rounded-box mb-5 shadow-lg"
         >
           <div class="collapse-title text-xl font-medium">
-            How does prototypical inheritance work?
-          </div>
-          <div class="collapse-content">
-            <p>tabindex="0" attribute is necessary to make the div focusable</p>
-          </div>
-        </div>
-        <div
-          tabindex="0"
-          class="collapse collapse-open border border-base-300 bg-base-100 rounded-box mb-5 shadow-lg"
-        >
-          <div class="collapse-title text-xl font-medium">
             Why you do not set the state directly in React? For example, if you
             have const [products, setProducts] = useState([]). Why you do not
             set products = [...] instead, you use the setProducts.

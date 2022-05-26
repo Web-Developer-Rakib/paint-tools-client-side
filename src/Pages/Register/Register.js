@@ -3,7 +3,7 @@ import {
   sendEmailVerification,
   updateProfile,
 } from "firebase/auth";
-import React from "react";
+import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import auth from "../../firebase_init";
@@ -14,6 +14,7 @@ import "./Register.css";
 
 const Register = () => {
   const { setUserInfo, handleGoogleProvider } = useFirebase();
+  const [loading, setLoading] = useState("");
   const { putUsersToDb } = usePutUsers();
   const { handleJWT } = useToken();
   const navigate = useNavigate();
@@ -21,6 +22,7 @@ const Register = () => {
   const admin = false;
   const review = false;
   const handleRegister = (e) => {
+    setLoading(<progress class="progress w-56"></progress>);
     e.preventDefault();
     const name = e.target.name.value;
     const email = e.target.email.value;
@@ -61,6 +63,9 @@ const Register = () => {
           ) {
             toast.warn("Password should be at least 6 characters.");
           }
+        })
+        .finally(() => {
+          setLoading("");
         });
     }
   };
@@ -100,6 +105,7 @@ const Register = () => {
             </div>
           </form>
           <div class="divider">OR</div>
+          {loading}
           <div className="flex justify-center">
             <button
               onClick={handleGoogleProvider}

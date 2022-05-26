@@ -90,6 +90,7 @@ const UpdateProfileForm = ({ setUpdateProfileForm, isload, setIsload }) => {
             class="input input-bordered input-sm"
             placeholder="Enter the avatar URL"
             name="photoURL"
+            required
           />
         </label>
         <div className="flex justify-around mt-5">
