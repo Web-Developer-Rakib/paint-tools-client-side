@@ -22,7 +22,6 @@ const Register = () => {
   const admin = false;
   const review = false;
   const handleRegister = (e) => {
-    setLoading(<progress class="progress w-56"></progress>);
     e.preventDefault();
     const name = e.target.name.value;
     const email = e.target.email.value;
@@ -32,6 +31,7 @@ const Register = () => {
     if (password !== confirmPassword) {
       toast.warn("Password did not matched.");
     } else {
+      setLoading(<progress class="progress w-56"></progress>);
       createUserWithEmailAndPassword(auth, email, password)
         .then(async (userCredential) => {
           await updateProfile(auth.currentUser, {
