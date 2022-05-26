@@ -54,7 +54,7 @@ const AddAProduct = () => {
       <div className="flex justify-center">
         <form
           onSubmit={addAProduct}
-          class="form-control card w-150 bg-base-100 shadow-xl pl-10 py-10"
+          class="form-control card w-150 bg-base-100 shadow-xl px-6 py-10"
         >
           <label class="input-group input-group-sm my-2">
             <span>Product name</span>
