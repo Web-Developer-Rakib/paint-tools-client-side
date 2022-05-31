@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 const useGetOrdersInfo = (isLoad) => {
   const [orders, setOrders] = useState([]);
   useEffect(() => {
-    fetch("http://localhost:5000/orders", {
+    fetch("https://painttools.herokuapp.com/orders", {
       method: "GET",
       headers: {
         "content-type": "application/json",

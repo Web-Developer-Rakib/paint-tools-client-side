@@ -27,7 +27,7 @@ const AddAReview = () => {
       comment,
       reviewersPhoto,
     };
-    fetch("http://localhost:5000/add-review", {
+    fetch("https://painttools.herokuapp.com/add-review", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -36,7 +36,7 @@ const AddAReview = () => {
     })
       .then((response) => response.json())
       .then(() => {
-        fetch(`http://localhost:5000/update-review-status`, {
+        fetch(`https://painttools.herokuapp.com/update-review-status`, {
           method: "PUT",
           headers: {
             "Content-Type": "application/json",

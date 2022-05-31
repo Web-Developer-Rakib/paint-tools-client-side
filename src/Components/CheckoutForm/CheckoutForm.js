@@ -14,7 +14,7 @@ const CheckoutForm = ({ orderedItem }) => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetch("http://localhost:5000/create-payment-intent", {
+    fetch("https://painttools.herokuapp.com/create-payment-intent", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -64,7 +64,7 @@ const CheckoutForm = ({ orderedItem }) => {
       setCardError("");
       setTransactionId(paymentIntent.id);
       setSuccess("Your payment is completed.");
-      fetch(`http://localhost:5000/update-payment-status/${_id}`, {
+      fetch(`https://painttools.herokuapp.com/update-payment-status/${_id}`, {
         method: "PATCH",
         headers: {
           "content-type": "application/json",

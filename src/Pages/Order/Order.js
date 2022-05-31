@@ -39,7 +39,7 @@ const Order = () => {
         shift,
         paid,
       };
-      fetch("http://localhost:5000/post-order", {
+      fetch("https://painttools.herokuapp.com/post-order", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

@@ -10,7 +10,7 @@ const MakeAdmin = () => {
     const admin = true;
     const usersEmail = email;
     const data = { admin, usersEmail };
-    fetch(`http://localhost:5000/make-admin`, {
+    fetch(`https://painttools.herokuapp.com/make-admin`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",

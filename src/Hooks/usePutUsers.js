@@ -4,7 +4,7 @@ const usePutUsers = () => {
   const [data, setData] = useState({});
   const [error, setError] = useState();
   const putUsersToDb = (usersData) => {
-    fetch("http://localhost:5000/put-user", {
+    fetch("https://painttools.herokuapp.com/put-user", {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",

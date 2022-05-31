@@ -2,7 +2,7 @@ import { toast } from "react-toastify";
 
 const useToken = () => {
   const handleJWT = (email) => {
-    fetch(`http://localhost:5000/jwt-token/${email}`, {
+    fetch(`https://painttools.herokuapp.com/jwt-token/${email}`, {
       method: "POST",
       headers: {
         authorization: `Bearer ${localStorage.getItem("accessToken")}`,
