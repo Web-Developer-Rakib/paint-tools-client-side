@@ -11,6 +11,7 @@ const Navbar = () => {
   const handleSignOut = () => {
     signOut(auth)
       .then(() => {
+        localStorage.removeItem("accessToken");
         navigate("/login");
         toast.success("Signout successful.");
       })

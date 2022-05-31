@@ -2,12 +2,11 @@ import { toast } from "react-toastify";
 
 const useToken = () => {
   const handleJWT = (email) => {
-    fetch(`http://localhost:5000/jwt-token/`, {
+    fetch(`http://localhost:5000/jwt-token/${email}`, {
       method: "POST",
       headers: {
         authorization: `Bearer ${localStorage.getItem("accessToken")}`,
       },
-      body: JSON.stringify(email),
     })
       .then((response) => response.json())
       .then((data) => {
