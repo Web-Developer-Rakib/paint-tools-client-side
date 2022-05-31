@@ -10,7 +10,7 @@ const ManageAllOrders = () => {
     console.log(id);
     const shift = true;
     const shippingData = { shift, id };
-    fetch(`https://painttools.herokuapp.com/update-shipping-status`, {
+    fetch(`http://localhost:5000/update-shipping-status`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",

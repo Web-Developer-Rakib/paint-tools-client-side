@@ -5,7 +5,7 @@ const useGetSingleProduct = () => {
   const [product, setProduct] = useState({});
   const { productId } = useParams();
   useEffect(() => {
-    fetch(`https://painttools.herokuapp.com/product/${productId}`)
+    fetch(`http://localhost:5000/product/${productId}`)
       .then((res) => res.json())
       .then((data) => setProduct(data));
   }, [productId]);

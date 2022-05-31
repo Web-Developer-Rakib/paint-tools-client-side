@@ -5,7 +5,7 @@ import useGetAllProducts from "../../../Hooks/useGetAllProducts";
 const ManageProducts = () => {
   const { products, setProducts } = useGetAllProducts();
   const handleDelete = (id) => {
-    fetch(`https://painttools.herokuapp.com/delete-product/${id}`, {
+    fetch(`http://localhost:5000/delete-product/${id}`, {
       method: "DELETE",
     })
       .then((res) => res.json())

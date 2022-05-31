@@ -31,7 +31,7 @@ const AddAProduct = () => {
         "Minimum order quantity should not be more then available stock."
       );
     } else {
-      fetch("https://painttools.herokuapp.com/add-product", {
+      fetch("http://localhost:5000/add-product", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

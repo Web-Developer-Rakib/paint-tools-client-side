@@ -7,7 +7,11 @@ const AboutUs = () => {
   return (
     <div class="hero min-h-screen bg-base-200">
       <div class="hero-content flex-col lg:flex-row">
-        <img src={aboutUsImg} class="max-w-sm rounded-lg shadow-2xl" alt="" />
+        <img
+          src={aboutUsImg}
+          class="m w-50 lg:max-w-sm rounded-lg shadow-2xl"
+          alt=""
+        />
         <div>
           <h1 class="text-5xl font-bold">More about Paint tools</h1>
           <p class="py-6">

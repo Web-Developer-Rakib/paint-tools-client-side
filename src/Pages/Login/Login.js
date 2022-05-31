@@ -11,23 +11,22 @@ import useToken from "../../Hooks/useToken";
 import "./Login.css";
 
 const Login = () => {
-  const { setUserInfo, handleGoogleProvider } = useFirebase();
+  const { setUserInfo } = useFirebase();
   const [loading, setLoading] = useState("");
-  const { handleJWT } = useToken();
   const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const { handleJWT } = useToken();
   const location = useLocation();
   const navigate = useNavigate();
   const from = location.state?.from?.pathname || "/";
   const handleLogin = (e) => {
     setLoading(<progress class="progress w-56"></progress>);
     e.preventDefault();
-    setEmail(e.target.email.value);
-    const password = e.target.password.value;
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         const user = userCredential.user;
         setUserInfo(user);
-        handleJWT(user.email);
+        handleJWT(email);
         toast.success("Login Successful.");
         navigate(from, { replace: true });
       })
@@ -44,6 +43,9 @@ const Login = () => {
         }
         if (errorMessage === "Firebase: Error (auth/user-not-found).") {
           toast.warn("This email is not registered yet.");
+        }
+        if (errorMessage === "Firebase: Error (auth/invalid-email).") {
+          toast.warn("Please enter a valid email.");
         }
       })
       .finally(() => {
@@ -81,14 +83,14 @@ const Login = () => {
               <h3 className="my-3 text-3xl">Login</h3>
               <input
                 type="email"
-                name="email"
+                onChange={(e) => setEmail(e.target.value)}
                 placeholder="Email"
                 required
               />{" "}
               <br />
               <input
                 type="password"
-                name="password"
+                onChange={(e) => setPassword(e.target.value)}
                 placeholder="Password"
                 required
               />{" "}
@@ -99,16 +101,7 @@ const Login = () => {
                 </button>
               </div>
             </form>
-            <div class="divider">OR</div>
             {loading}
-            <div className="flex justify-center">
-              <button
-                onClick={handleGoogleProvider}
-                className="btn bg-blue-500 my-3"
-              >
-                Login with Google
-              </button>
-            </div>
             <p>
               New here?{" "}
               <Link to="/register" className="form-links">

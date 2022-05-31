@@ -13,7 +13,7 @@ import useToken from "../../Hooks/useToken";
 import "./Register.css";
 
 const Register = () => {
-  const { setUserInfo, handleGoogleProvider } = useFirebase();
+  const { setUserInfo } = useFirebase();
   const [loading, setLoading] = useState("");
   const { putUsersToDb } = usePutUsers();
   const { handleJWT } = useToken();
@@ -70,7 +70,7 @@ const Register = () => {
     }
   };
   return (
-    <div className="flex justify-center">
+    <div className="flex justify-center h-screen">
       <div className="register-form-container">
         <div>
           <form onSubmit={handleRegister} className="register-form">
@@ -104,16 +104,7 @@ const Register = () => {
               </button>
             </div>
           </form>
-          <div class="divider">OR</div>
           {loading}
-          <div className="flex justify-center">
-            <button
-              onClick={handleGoogleProvider}
-              className="btn bg-blue-500 my-3"
-            >
-              Register with Google
-            </button>
-          </div>
           <p>
             Already have an account?{" "}
             <Link to="/login" className="form-links">

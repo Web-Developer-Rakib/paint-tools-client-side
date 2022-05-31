@@ -39,7 +39,9 @@ const Home = () => {
         </div>
       </section>
       <section className="ml-5 mr-5 mb-10">
-        <h3 className="text-2xl text-center my-5  font-bold">Reviews</h3>
+        <h3 className="text-2xl text-center my-5  font-bold uppercase">
+          Reviews
+        </h3>
         <div className="flex justify-evenly flex-wrap">
           {reviewSlice.map((review) => (
             <ReviewCard review={review}></ReviewCard>

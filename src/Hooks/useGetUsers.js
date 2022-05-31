@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 const useGetUsers = (isload) => {
   const [users, setUsers] = useState([]);
   useEffect(() => {
-    fetch("https://painttools.herokuapp.com/users")
+    fetch("http://localhost:5000/users")
       .then((res) => res.json())
       .then((data) => setUsers(data));
   }, [isload]);
