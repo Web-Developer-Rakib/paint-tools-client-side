@@ -4,6 +4,7 @@ import { Link, NavLink, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import auth from "../../firebase_init";
 import useFirebase from "../../Hooks/useFirebase";
+import Logo from "../../Images/logo.png";
 
 const Navbar = () => {
   const navigate = useNavigate();
@@ -79,7 +80,7 @@ const Navbar = () => {
           </ul>
         </div>
         <Link to="/" class="btn btn-ghost normal-case text-xl">
-          PAINT TOOLS
+          <img src={Logo} alt="" />
         </Link>
       </div>
       <div class="navbar-center hidden lg:flex">

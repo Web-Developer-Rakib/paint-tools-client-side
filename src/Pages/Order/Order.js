@@ -14,12 +14,12 @@ const Order = () => {
   const navigate = useNavigate();
   const handlePlaceOrder = (e) => {
     e.preventDefault();
-    const quantity = e.target.quantity.value;
+    const quantity = parseInt(e.target.quantity.value);
     if (quantity < 1) {
       toast.warn("Please enter one or more.");
-    } else if (quantity > product?.avaiableStock) {
+    } else if (quantity > parseInt(product?.avaiableStock)) {
       toast.warn("You can not order more than available stock.");
-    } else if (quantity < product?.minimumOrder) {
+    } else if (quantity < parseInt(product?.minimumOrder)) {
       toast.warn(`You have to order minimum ${product?.minimumOrder} unites`);
     } else {
       const productName = product?.productName;

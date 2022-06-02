@@ -24,7 +24,7 @@ const AboutUs = () => {
             metalworking, woodworking, and polishing. The company has a strong
             geographic presence across the advanced economies of the asian
             region, eventually, resulting in owing a significant share in the
-            wall painting Tools Market in the Bangladesh.
+            wall painting tools market in Bangladesh.
           </p>
           <button
             onClick={() => navigate("/all-products")}

@@ -9,9 +9,9 @@ const AddAProduct = () => {
   const addAProduct = (e) => {
     e.preventDefault();
     const productName = e.target.productName.value;
-    const price = e.target.price.value;
-    const avaiableStock = e.target.avaiableStock.value;
-    const minimumOrder = e.target.minimumOrder.value;
+    const price = parseInt(e.target.price.value);
+    const avaiableStock = parseInt(e.target.avaiableStock.value);
+    const minimumOrder = parseInt(e.target.minimumOrder.value);
     const description = e.target.description.value;
     const imageUrl = e.target.imageUrl.value;
     const productsInfo = {
@@ -31,7 +31,7 @@ const AddAProduct = () => {
         "Minimum order quantity should not be more then available stock."
       );
     } else {
-      fetch("https://painttools.herokuapp.com/add-product", {
+      fetch("http://localhost:5000/add-product", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -41,7 +41,7 @@ const AddAProduct = () => {
         .then((response) => response.json())
         .then(() => {
           toast.success("Product added successfully.");
-          e.target.reset();
+          // e.target.reset();
         })
         .catch(() => {
           toast.error("Something went wrong.");
@@ -109,8 +109,7 @@ const AddAProduct = () => {
             <span>Product image</span>
             <input
               type="url"
-              placeholder="Product image url"
-              class="input input-bordered input-sm"
+              // class="input input-bordered input-sm"
               name="imageUrl"
               required
             />
