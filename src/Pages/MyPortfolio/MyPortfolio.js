@@ -13,15 +13,15 @@ const MyPortfolio = () => {
             <h1 class="text-2xl font-bold">Fullstack developer</h1>
             <div className="my-5">
               <h3>
-                <span className="font-bold">Email:</span> rakibodesk7@gmail.com
+                <span className="font-bold">Email:</span>{" "}
+                mail.webdeveloperrakib@gmail.com
               </h3>
               <p class="py-6">
-                Once upon a time I was a project manager in a Canadian software
-                development company. That environment made my mindset to be an
-                web developer. I left my previous job to be an web developer.
-                Finally my perpouse is going to be success. I have no strong
-                educational background. It's only 12 till now. But, I have
-                curiosity to do something new. And I love to take risk as well.
+                Solution-oriented and problem solver. Proven track record
+                developing various web sites. Strong knowledge of MERN stack
+                with re-usability and ease of maintenance. Highly proficient in
+                JavaScript, as well as quality coding and excellent debugging
+                skills.
               </p>
               <p className="font-bold">My tech stacks are:</p>
               <p>

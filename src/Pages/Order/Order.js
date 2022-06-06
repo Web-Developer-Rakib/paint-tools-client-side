@@ -81,8 +81,8 @@ const Order = () => {
                 Dear {userInfo?.displayName}, <br />
                 Thank's for ordering <b>{productName}</b>. Currently we have{" "}
                 <b>{avaiableStock}</b> unites available. And our minimum order
-                quantity is <b>{minimumOrder}</b>. Please make sure that before
-                place order. <br /> Thank you.
+                quantity is <b>{minimumOrder}</b> unites. Please make sure that
+                before place order. <br /> Thank you.
               </p>
               <label class="input-group input-group-sm my-5">
                 <span>Quantity</span>

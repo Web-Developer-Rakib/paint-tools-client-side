@@ -7,7 +7,6 @@ import Navbar from "./Components/NavBar/Navbar";
 import RequireAuth from "./Hooks/RequireAuth";
 import AllProducts from "./Pages/AllProducts/AllProducts";
 import AllReviews from "./Pages/AllReviews/AllReviews";
-import Blogs from "./Pages/Blogs/Blogs";
 import Dashbord from "./Pages/Dashboard/Dashbord";
 import Home from "./Pages/Home/Home";
 import Login from "./Pages/Login/Login";
@@ -61,7 +60,6 @@ function App() {
             element={<ManageProducts></ManageProducts>}
           ></Route>
         </Route>
-        <Route path="blogs" element={<Blogs></Blogs>}></Route>
         <Route path="login" element={<Login></Login>}></Route>
         <Route path="register" element={<Register></Register>}></Route>
         <Route

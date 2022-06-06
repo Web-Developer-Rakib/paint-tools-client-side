@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { toast } from "react-toastify";
 import useFirebase from "../../../Hooks/useFirebase";
 
@@ -6,6 +6,8 @@ const AddAProduct = () => {
   const { userInfo } = useFirebase();
   const userName = userInfo?.displayName;
   const userEmail = userInfo?.email;
+  const [image, setImage] = useState({});
+  console.log(image);
   const addAProduct = (e) => {
     e.preventDefault();
     const productName = e.target.productName.value;
@@ -13,7 +15,7 @@ const AddAProduct = () => {
     const avaiableStock = parseInt(e.target.avaiableStock.value);
     const minimumOrder = parseInt(e.target.minimumOrder.value);
     const description = e.target.description.value;
-    const imageUrl = e.target.imageUrl.value;
+    // const imageUrl = e.target.imageUrl.value;
     const productsInfo = {
       productName,
       userName,
@@ -22,7 +24,7 @@ const AddAProduct = () => {
       avaiableStock,
       minimumOrder,
       description,
-      imageUrl,
+      image,
     };
     if (price < 1 || avaiableStock < 1 || minimumOrder < 1) {
       toast.warn("All fields need positive amount.");
@@ -108,9 +110,10 @@ const AddAProduct = () => {
           <label class="input-group input-group-sm my-2">
             <span>Product image</span>
             <input
-              type="url"
+              type="file"
               // class="input input-bordered input-sm"
-              name="imageUrl"
+              name="productImg"
+              onChange={(e) => setImage(e.target.files[0])}
               required
             />
           </label>

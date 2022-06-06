@@ -4,7 +4,7 @@
 
 ### Project description
 
-Paint tools is a wall painting tools manufacturers website. Custommer can purchase wall paintig toos by the help of this website. They can provide review and update there profile as well.
+Paint tools is a wall painting tools manufacturer's website. Customers can purchase wall painting tools with the help of this website. They can provide reviews and update their profile as well.
 
 ### Packages and technologies used for this website
 
